@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "typescript.tsdk": ".vscode/pnpify/typescript/lib",
+  "prettier.prettierPath": ".vscode/pnpify/prettier/index.js",
+  "search.exclude": {
+    "**/coverage": true,
+    "**/dist": true,
+    "**/esm": true
+  }
+}

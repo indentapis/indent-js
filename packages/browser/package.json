@@ -1,0 +1,69 @@
+{
+  "name": "@indentapis/browser",
+  "version": "0.0.3",
+  "scripts": {
+    "build": "yarn run build:es5 && yarn run build:esm",
+    "build:es5": "tsc -p tsconfig.build.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:watch": "run-p build:watch:es5 build:watch:esm",
+    "build:watch:es5": "tsc -p tsconfig.build.json -w --preserveWatchOutput",
+    "build:watch:esm": "tsc -p tsconfig.esm.json -w --preserveWatchOutput",
+    "clean": "rimraf dist coverage",
+    "link:yarn": "yarn link",
+    "lint": "run-s lint:prettier lint:tslint",
+    "lint:prettier": "prettier-check \"{src,test}/**/*.ts\"",
+    "lint:tslint": "tslint -t stylish -p .",
+    "lint:tslint:json": "tslint --format json -p . | tee lint-results.json",
+    "fix": "run-s fix:tslint fix:prettier",
+    "fix:prettier": "prettier --write \"{src,test}/**/*.ts\"",
+    "fix:tslint": "tslint --fix -t stylish -p .",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@indentapis/core": "workspace:*",
+    "@indentapis/types": "workspace:*",
+    "lodash.get": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "@types/lodash.get": "4.4.6",
+    "@types/node": "^13.7.0",
+    "jest": "^25.1.0",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.17.0",
+    "prettier-check": "^2.0.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.10.1",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-license": "^0.8.1",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "ts-jest": "^25.1.0",
+    "tslib": "^1.10.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "sideEffects": false,
+  "jest": {
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./tsconfig.json",
+        "diagnostics": false
+      }
+    }
+  }
+}

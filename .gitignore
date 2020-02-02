@@ -1,0 +1,5 @@
+node_modules
+.vscode/pnpify
+packages/**/esm*
+packages/**/dist*
+packages/**/coverage*

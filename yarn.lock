@@ -236,6 +236,7 @@ __metadata:
     prettier-check: ^2.0.0
     rimraf: ^2.6.3
     ts-jest: ^25.1.0
+    tslib: ^1.10.0
     tslint: ^5.16.0
     typescript: ^3.4.5
   languageName: unknown
@@ -255,6 +256,7 @@ __metadata:
     prettier-check: ^2.0.0
     rimraf: ^2.6.3
     ts-jest: ^25.1.0
+    tslib: ^1.10.0
     tslint: ^5.16.0
     typescript: ^3.4.5
   languageName: unknown
@@ -280,6 +282,7 @@ __metadata:
     rimraf: ^2.6.3
     sinon: ^7.3.2
     ts-jest: ^25.1.0
+    tslib: ^1.10.0
     tslint: ^5.16.0
     typedoc: ^0.14.2
     typescript: ^3.4.5
@@ -297,6 +300,7 @@ __metadata:
     prettier: ^1.17.0
     prettier-check: ^2.0.0
     ts-jest: ^25.1.0
+    tslib: ^1.10.0
     tslint: ^5.16.0
     typescript: ^3.4.5
   languageName: unknown

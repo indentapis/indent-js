@@ -8,14 +8,14 @@ export interface Transport {
    *
    * @param req WriteEventRequest body that should be sent to Indent.
    */
-  write(req: WriteEventRequest): Promise<Response>
+  write(req: WriteEventRequest): Promise<TransportResponse>
 
   /**
    * Sends the body to the Store endpoint in Indent.
    *
    * @param req WriteBatchRequest body that should be sent to Indent.
    */
-  writeBatch(req: WriteBatchRequest): Promise<Response>
+  writeBatch(req: WriteBatchRequest): Promise<TransportResponse>
 
   /**
    * Call this function to wait until all pending requests have been sent.

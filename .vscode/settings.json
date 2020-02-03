@@ -3,6 +3,8 @@
   "typescript.tsdk": ".vscode/pnpify/typescript/lib",
   "prettier.prettierPath": ".vscode/pnpify/prettier/index.js",
   "search.exclude": {
+    "**/.pnp.js": true,
+    "**/.yarn": true,
     "**/coverage": true,
     "**/dist": true,
     "**/esm": true

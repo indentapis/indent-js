@@ -1,3 +1,5 @@
+import { Processor } from './processor'
+
 /** Plugin Class Interface */
 export interface PluginClass<T> {
   new (...args: any[]): T

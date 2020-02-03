@@ -1,5 +1,10 @@
-export { Dsn, DsnOptions, DsnOrString } from './dsn'
-export { Transport, TransportOptions, TransportClass } from './transport'
+export { DsnOptions, DsnOrString } from './dsn'
+export {
+  Transport,
+  TransportOptions,
+  TransportClass,
+  TransportResponse
+} from './transport'
 export {
   Event,
   Actor,
@@ -7,3 +12,5 @@ export {
   WriteEventRequest,
   WriteBatchRequest
 } from './audit'
+export { Plugin } from './plugin'
+export { Processor } from './processor'

@@ -14,8 +14,8 @@ if (_global.Indent && _global.Indent.Plugins) {
 
 const PLUGINS = {
   ...windowPlugins,
-  ...CorePlugins,
-  ...BrowserPlugins
+  ...CorePlugins
+  // ...BrowserPlugins
 }
 
 export { PLUGINS as Plugins, Transports }

@@ -1,4 +1,6 @@
 {
+  "include": ["packages/**/*"],
+  "exclude": [".yarn"],
   "compilerOptions": {
     "baseUrl": "packages",
     "types": ["node"],
@@ -12,6 +14,7 @@
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "noEmitHelpers": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,

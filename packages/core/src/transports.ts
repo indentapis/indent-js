@@ -16,7 +16,7 @@ export class NoopTransport implements Transport {
         code: 'noop',
         message: `NoopTransport: did nothing.`
       }
-    })
+    } as TransportResponse)
   }
 
   /**
@@ -28,7 +28,7 @@ export class NoopTransport implements Transport {
         code: 'noop',
         message: `NoopTransport: did nothing.`
       }
-    })
+    } as TransportResponse)
   }
 
   /**

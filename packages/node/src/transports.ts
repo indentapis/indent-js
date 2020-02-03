@@ -16,7 +16,7 @@ export class HttpTransport implements Transport {
         code: 'noop',
         message: `HttpTransport: did nothing.`
       }
-    })
+    } as TransportResponse)
   }
 
   /**
@@ -28,7 +28,7 @@ export class HttpTransport implements Transport {
         code: 'noop',
         message: `HttpTransport: did nothing.`
       }
-    })
+    } as TransportResponse)
   }
 
   /**

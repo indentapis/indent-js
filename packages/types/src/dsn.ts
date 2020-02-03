@@ -1,7 +1,7 @@
-/** Primitive components of a Dsn. */
+/** Primitive options of a Dsn. */
 export interface DsnOptions {
   /** Protocol used to connect to Indent. */
-  protocol: 'http' | 'https'
+  protocol: string
   /** Public authorization key. */
   user: string
   /** private _authorization key (deprecated, optional). */
@@ -14,8 +14,8 @@ export interface DsnOptions {
   path?: string
 }
 
-/** The Indent Dsn, identifying a Indent Write API instance and input. */
-export interface Dsn extends DsnOptions {
+/** The Indent Dsn Object, identifying a Indent Write API instance and input. */
+export interface DsnObject extends DsnOptions {
   /**
    * Renders the string representation of this Dsn.
    *
@@ -28,4 +28,4 @@ export interface Dsn extends DsnOptions {
   toString(withPassword: boolean): string
 }
 
-export type DsnOrString = Dsn | string
+export type DsnOrString = DsnObject | string

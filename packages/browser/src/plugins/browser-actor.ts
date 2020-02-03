@@ -1,10 +1,11 @@
 import { Event, Plugin } from '@indentapis/types'
-import { getGlobalScope } from '../utils/global'
-import get from 'lodash.get'
+import { getGlobalScope as _getGlobalScope, GlobalScope } from '../utils/global'
+import { default as get } from 'lodash.get'
 
 interface BrowserActorOptions {
   idLookupKeys?: string[]
   emailLookupKeys?: string[]
+  getGlobalScope?: () => GlobalScope
 }
 
 export class BrowserActorPlugin implements Plugin {
@@ -35,7 +36,7 @@ export class BrowserActorPlugin implements Plugin {
         'localStorage.INDENT_ACTOR_EMAIL',
         'localStorage.ajs_user_traits$email'
       ],
-      getGlobalScope,
+      getGlobalScope: _getGlobalScope,
       ...options
     }
   }
@@ -46,27 +47,30 @@ export class BrowserActorPlugin implements Plugin {
     }
 
     if (!event.actor.id) {
-      const { idLookupKeys, getGlobalScope } = this._options
-      event.actor.id =
-        findIdByLookup(idLookupKeys, getGlobalScope()) ||
-        'irn:indent:id:anonymous'
+      const { idLookupKeys = [''], getGlobalScope } = this._options
+
+      if (getGlobalScope) {
+        event.actor.id =
+          findIdByLookup(idLookupKeys, getGlobalScope()) ||
+          'irn:indent:id:anonymous'
+      }
     }
 
     return event
   }
 }
 
-function findIdByLookup(lookupKeys, scope) {
+function findIdByLookup(lookupKeys: string[], scope: GlobalScope) {
   return lookupKeys.reduce((id, key) => {
     if (id) {
       return id
     }
 
-    if (!lookupKeys[key]) {
+    if (!key) {
       return id
     }
 
-    let lookupParts = lookupKeys[key].split('$')
+    let lookupParts = key.split('$')
 
     if (lookupParts.length > 1) {
       try {
@@ -84,6 +88,6 @@ function findIdByLookup(lookupKeys, scope) {
       }
     }
 
-    return get(id)
+    return id
   }, '')
 }

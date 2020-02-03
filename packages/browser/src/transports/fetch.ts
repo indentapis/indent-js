@@ -5,6 +5,7 @@ import {
   WriteBatchRequest,
   WriteEventRequest
 } from '@indentapis/types'
+import { getDsnUrl } from '@indentapis/core'
 
 /** Noop transport */
 export class FetchTransport implements Transport {
@@ -25,17 +26,17 @@ export class FetchTransport implements Transport {
     return fetch(getDsnUrl(this._options.dsn), {
       method: 'POST',
       body: JSON.stringify(req.event)
-    }).then(res => ({ ok: true }))
+    }).then(__ => ({ ok: true } as TransportResponse))
   }
 
   /**
    * @inheritDoc
    */
-  public writeBatch(_: WriteBatchRequest): Promise<TransportResponse> {
+  public writeBatch(req: WriteBatchRequest): Promise<TransportResponse> {
     return fetch(getDsnUrl(this._options.dsn, { batch: true }), {
       method: 'POST',
       body: JSON.stringify(req.events)
-    }).then(res => ({ ok: true }))
+    }).then(__ => ({ ok: true } as TransportResponse))
   }
 
   /**

@@ -195,15 +195,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@indentapis/browser@workspace:packages/browser":
+"@indent/browser@workspace:packages/browser":
   version: 0.0.0-use.local
-  resolution: "@indentapis/browser@workspace:packages/browser"
+  resolution: "@indent/browser@workspace:packages/browser"
   dependencies:
-    "@indentapis/core": "workspace:*"
-    "@indentapis/types": "workspace:*"
+    "@indent/core": "workspace:*"
+    "@indent/types": "workspace:*"
     "@types/jest": ^25.1.1
     "@types/lodash.get": 4.4.6
     "@types/node": ^13.7.0
+    "@types/node-fetch": ^2.5.4
     jest: ^25.1.0
     lodash.get: ^4.4.2
     npm-run-all: ^4.1.2
@@ -223,13 +224,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@indentapis/core@workspace:*, @indentapis/core@workspace:packages/core":
+"@indent/core@workspace:*, @indent/core@workspace:packages/core":
   version: 0.0.0-use.local
-  resolution: "@indentapis/core@workspace:packages/core"
+  resolution: "@indent/core@workspace:packages/core"
   dependencies:
-    "@indentapis/types": "workspace:*"
+    "@indent/types": "workspace:*"
     "@types/jest": ^25.1.1
     "@types/node": ^13.7.0
+    "@types/node-fetch": ^2.5.4
+    isomorphic-unfetch: ^3.0.0
     jest: ^25.1.0
     npm-run-all: ^4.1.2
     prettier: ^1.17.0
@@ -242,19 +245,37 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@indentapis/node@workspace:*, @indentapis/node@workspace:packages/node":
+"@indent/node@workspace:packages/node":
   version: 0.0.0-use.local
-  resolution: "@indentapis/node@workspace:packages/node"
+  resolution: "@indent/node@workspace:packages/node"
   dependencies:
-    "@indentapis/node": "workspace:*"
-    "@indentapis/types": "workspace:*"
+    "@indent/core": "workspace:*"
+    "@indent/types": "workspace:*"
     "@types/jest": ^25.1.1
     "@types/node": ^13.7.0
+    "@types/node-fetch": ^2.5.4
     jest: ^25.1.0
     npm-run-all: ^4.1.2
     prettier: ^1.17.0
     prettier-check: ^2.0.0
     rimraf: ^2.6.3
+    ts-jest: ^25.1.0
+    tslib: ^1.10.0
+    tslint: ^5.16.0
+    typescript: ^3.4.5
+  languageName: unknown
+  linkType: soft
+
+"@indent/types@workspace:*, @indent/types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@indent/types@workspace:packages/types"
+  dependencies:
+    "@types/node": ^13.7.0
+    "@types/node-fetch": ^2.5.4
+    jest: ^25.1.0
+    npm-run-all: ^4.1.2
+    prettier: ^1.17.0
+    prettier-check: ^2.0.0
     ts-jest: ^25.1.0
     tslib: ^1.10.0
     tslint: ^5.16.0
@@ -270,6 +291,7 @@ __metadata:
     "@types/jest": ^24.0.11
     "@types/mocha": ^5.2.0
     "@types/node": ^13.7.0
+    "@types/node-fetch": ^2.5.4
     "@types/raven": ^2.5.1
     "@types/sinon": ^7.0.11
     "@yarnpkg/pnpify": ^2.0.0-rc.17
@@ -287,22 +309,6 @@ __metadata:
     typedoc: ^0.14.2
     typescript: ^3.4.5
     typescript-tslint-plugin: ^0.3.1
-  languageName: unknown
-  linkType: soft
-
-"@indentapis/types@workspace:*, @indentapis/types@workspace:packages/types":
-  version: 0.0.0-use.local
-  resolution: "@indentapis/types@workspace:packages/types"
-  dependencies:
-    "@types/node": ^13.7.0
-    jest: ^25.1.0
-    npm-run-all: ^4.1.2
-    prettier: ^1.17.0
-    prettier-check: ^2.0.0
-    ts-jest: ^25.1.0
-    tslib: ^1.10.0
-    tslint: ^5.16.0
-    typescript: ^3.4.5
   languageName: unknown
   linkType: soft
 
@@ -738,6 +744,15 @@ __metadata:
   version: 5.2.7
   resolution: "@types/mocha@npm:5.2.7"
   checksum: 6e54558ab674abba00d2c3c18adb5b0bcecf68a837deca74af017931c2176d1c2199f02e473e8047c789aea6d63f4cbbdc776f5d64be1af5ffffbaaa2e038cab
+  languageName: node
+  linkType: hard
+
+"@types/node-fetch@npm:^2.5.4":
+  version: 2.5.4
+  resolution: "@types/node-fetch@npm:2.5.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: 1f0726019be4f670e8c7bf7d263f091cf413e5ae862833a1b110f7db88c8665f86fded40d8595547900b1abec09288b42dcfcc0735de95dfa61bae6b6d1ef2f2
   languageName: node
   linkType: hard
 
@@ -2882,6 +2897,16 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"isomorphic-unfetch@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "isomorphic-unfetch@npm:3.0.0"
+  dependencies:
+    node-fetch: ^2.2.0
+    unfetch: ^4.0.0
+  checksum: cdaf44f38255cd4728b683ba7bd894a7966fa8b911864e162ad074d789d2fa82cf6ec134f73cfec15b68390c603a9a557521a8081b93085af3ff4c96fda40051
+  languageName: node
+  linkType: hard
+
 "isstream@npm:~0.1.2":
   version: 0.1.2
   resolution: "isstream@npm:0.1.2"
@@ -4014,6 +4039,13 @@ fsevents@^2.1.2:
     object.getownpropertydescriptors: ^2.0.3
     semver: ^5.7.0
   checksum: b8e702cdd480862a7f716f0170cac26b2dc9b999735c863d0d3449b6760d1eec8a01930418bb819e24cb3364641e4f7022a07bb88c4357a906f326cbe132bd27
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.2.0":
+  version: 2.6.0
+  resolution: "node-fetch@npm:2.6.0"
+  checksum: 62de03bca8db6d39d2ec3baf51a3c7805a7cb1669dcfcfd0f0dc09b891e8673c80e71abaed8969f6f92401130824706e9103350a2bcc961dab629024781f0fd2
   languageName: node
   linkType: hard
 
@@ -5987,6 +6019,13 @@ typescript@^3.4.5:
   bin:
     uglifyjs: bin/uglifyjs
   checksum: 1581877231d20553e1a302b0247d22af8165dcb13e99282bb2e9974498f9666219b160b9fadb9a32b7cdfa44c95cf40aaac62cf878d27be16624e38a399f4ab0
+  languageName: node
+  linkType: hard
+
+"unfetch@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "unfetch@npm:4.1.0"
+  checksum: 41b596a23f6111f51bb4b33979336704120226506e12fd16c93d29f4ac031a9528b6d699334162f36db06ee31004a4720e64d9361acccfecebd01990846b0665
   languageName: node
   linkType: hard
 

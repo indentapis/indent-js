@@ -26,18 +26,17 @@ export type Event = {
   resources?: Resource[]
 }
 
-// DSN = https://[writeKey]@write.indentapis.com/v1/base58([space]/[providerName]/[inputName])
-
-export type WriteEventRequest = {
-  providerName: string
-  spaceName: string
-  inputName: string
-  event: Event
-}
-
-export type WriteBatchRequest = {
-  providerName: string
-  spaceName: string
+export type WriteRequest = {
   inputName: string
   events: Event[]
+}
+
+export interface IAuditAPIOptions {
+  dsn?: string
+  debug?: false
+}
+
+export interface IAuditAPI {
+  init: (options: IAuditAPIOptions) => void
+  write: (event: Event) => void
 }

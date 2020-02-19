@@ -1,4 +1,6 @@
-export { getDsnUrl } from './utils'
+import { TimestampPlugin } from './plugins'
+
+export { fetch } from './utils'
 export { IndentError } from './error'
-export { NoopTransport } from './transports'
-export const Plugins = {}
+export const Plugins = { TimestampPlugin }
+export { processEventWithPlugins } from './plugins'

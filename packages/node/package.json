@@ -1,5 +1,5 @@
 {
-  "name": "@indentapis/node",
+  "name": "@indent/node",
   "version": "0.0.3",
   "main": "dist/index.js",
   "module": "esm/index.js",
@@ -24,12 +24,13 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@indentapis/core": "workspace:*",
-    "@indentapis/types": "workspace:*"
+    "@indent/core": "workspace:*",
+    "@indent/types": "workspace:*"
   },
   "devDependencies": {
     "@types/jest": "^25.1.1",
     "@types/node": "^13.7.0",
+    "@types/node-fetch": "^2.5.4",
     "jest": "^25.1.0",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.17.0",

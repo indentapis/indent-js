@@ -1,12 +1,18 @@
-import { Plugins as CorePlugins } from '@indentapis/core'
+import {
+  fetch,
+  Plugins as CorePlugins,
+  processEventWithPlugins
+} from '@indent/core'
+import { IAuditAPI, Event } from '@indent/types'
 import { getGlobalScope } from './utils/global'
-import * as Transports from './transports'
+import * as BrowserPlugins from './plugins'
 
 let windowPlugins = {}
 
 // This block is needed to add compatibility with the plugins packages when used with a CDN
 // tslint:disable: no-unsafe-any
 const _global = getGlobalScope<Window>()
+
 if (_global.Indent && _global.Indent.Plugins) {
   windowPlugins = _global.Indent.Plugins
 }
@@ -14,8 +20,67 @@ if (_global.Indent && _global.Indent.Plugins) {
 
 const PLUGINS = {
   ...windowPlugins,
-  ...CorePlugins
-  // ...BrowserPlugins
+  ...CorePlugins,
+  ...BrowserPlugins
 }
 
-export { PLUGINS as Plugins, Transports }
+let config = { dsn: '', debug: false }
+let flushTimeout = setTimeout(() => {}, 0)
+let queue: Event[] = []
+
+const BATCH_SIZE = 1000
+
+function flush() {
+  const { dsn, debug } = config
+
+  if (!dsn) {
+    throw new Error(
+      `‣ missing: audit.init({ dsn }) - https://indent.fyi/sdk/js/missing-dsn`
+    )
+  }
+
+  if (debug) {
+    console.log(`‣ flush: ${queue.length} events`)
+  }
+
+  let events = queue
+    .splice(0, BATCH_SIZE)
+    .map(processEventWithPlugins(Object.values(PLUGINS)))
+
+  fetch(dsn, {
+    method: 'POST',
+    body: JSON.stringify({ events })
+  })
+    .then(() => {
+      if (debug) {
+        console.log(`‣ flush: write: success`)
+      }
+    })
+    .catch(err => {
+      if (debug) {
+        console.error(`‣ flush: write: error`)
+        console.error(err)
+      }
+    })
+
+  clearTimeout(flushTimeout)
+}
+
+const audit: IAuditAPI = {
+  init: ({ dsn = '', debug = false }) => {
+    config.dsn = dsn
+    config.debug = debug
+  },
+  write: (event: Event) => {
+    queue.push(event)
+
+    if (queue.length === BATCH_SIZE) {
+      clearTimeout(flushTimeout)
+      flush()
+    } else {
+      flushTimeout = setTimeout(flush, 500) // flush every 500ms
+    }
+  }
+}
+
+export { audit, PLUGINS as Plugins }

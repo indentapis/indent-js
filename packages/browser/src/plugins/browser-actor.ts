@@ -1,5 +1,5 @@
-import { Event, Plugin } from '@indentapis/types'
 import { getGlobalScope as _getGlobalScope, GlobalScope } from '../utils/global'
+import { Event, Plugin } from '@indent/types'
 import { default as get } from 'lodash.get'
 
 interface BrowserActorOptions {
@@ -50,9 +50,10 @@ export class BrowserActorPlugin implements Plugin {
       const { idLookupKeys = [''], getGlobalScope } = this._options
 
       if (getGlobalScope) {
-        event.actor.id =
+        event.actor.id = String(
           findIdByLookup(idLookupKeys, getGlobalScope()) ||
-          'irn:indent:id:anonymous'
+            'irn:indent:id:anonymous'
+        )
       }
     }
 

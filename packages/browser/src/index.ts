@@ -1,8 +1,4 @@
-import {
-  fetch,
-  Plugins as CorePlugins,
-  processEventWithPlugins
-} from '@indent/core'
+import { Plugins as CorePlugins, processEventWithPlugins } from '@indent/core'
 import { IAuditAPI, Event } from '@indent/types'
 import { getGlobalScope } from './utils/global'
 import * as BrowserPlugins from './plugins'
@@ -56,7 +52,7 @@ function flush() {
         console.log(`‣ flush: write: success`)
       }
     })
-    .catch(err => {
+    .catch((err: Error) => {
       if (debug) {
         console.error(`‣ flush: write: error`)
         console.error(err)

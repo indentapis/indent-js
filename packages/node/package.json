@@ -25,7 +25,9 @@
   },
   "dependencies": {
     "@indent/core": "workspace:*",
-    "@indent/types": "workspace:*"
+    "@indent/types": "workspace:*",
+    "isomorphic-unfetch": "^3.0.0",
+    "unfetch": "^4.1.0"
   },
   "devDependencies": {
     "@types/jest": "^25.1.1",

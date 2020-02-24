@@ -254,6 +254,7 @@ __metadata:
     "@types/jest": ^25.1.1
     "@types/node": ^13.7.0
     "@types/node-fetch": ^2.5.4
+    isomorphic-unfetch: ^3.0.0
     jest: ^25.1.0
     npm-run-all: ^4.1.2
     prettier: ^1.17.0
@@ -263,6 +264,7 @@ __metadata:
     tslib: ^1.10.0
     tslint: ^5.16.0
     typescript: ^3.4.5
+    unfetch: ^4.1.0
   languageName: unknown
   linkType: soft
 
@@ -283,9 +285,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@indentapis/sdk-js@workspace:.":
+"@indentapis/indent-js@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@indentapis/sdk-js@workspace:."
+  resolution: "@indentapis/indent-js@workspace:."
   dependencies:
     "@types/chai": ^4.1.3
     "@types/jest": ^24.0.11
@@ -309,6 +311,7 @@ __metadata:
     typedoc: ^0.14.2
     typescript: ^3.4.5
     typescript-tslint-plugin: ^0.3.1
+    unfetch: ^4.1.0
   languageName: unknown
   linkType: soft
 
@@ -6022,7 +6025,7 @@ typescript@^3.4.5:
   languageName: node
   linkType: hard
 
-"unfetch@npm:^4.0.0":
+"unfetch@npm:^4.0.0, unfetch@npm:^4.1.0":
   version: 4.1.0
   resolution: "unfetch@npm:4.1.0"
   checksum: 41b596a23f6111f51bb4b33979336704120226506e12fd16c93d29f4ac031a9528b6d699334162f36db06ee31004a4720e64d9361acccfecebd01990846b0665

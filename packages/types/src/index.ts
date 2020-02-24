@@ -6,5 +6,6 @@ export {
   Resource,
   WriteRequest,
   IAuditAPIOptions,
+  IWriteOptions,
   IAuditAPI
 } from './audit'

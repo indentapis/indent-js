@@ -19,7 +19,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],
     "dependencyTreeRoots": [
       {
-        "name": "@indentapis/sdk-js",
+        "name": "@indentapis/indent-js",
         "reference": "workspace:."
       },
       {
@@ -46,7 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@indent/core", ["workspace:packages/core"]],
       ["@indent/node", ["workspace:packages/node"]],
       ["@indent/types", ["workspace:packages/types"]],
-      ["@indentapis/sdk-js", ["workspace:."]]
+      ["@indentapis/indent-js", ["workspace:."]]
     ],
     "locationBlacklistData": [
     ],
@@ -133,21 +133,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node-fetch", "npm:2.5.4"],
             ["@types/raven", "npm:2.5.3"],
             ["@types/sinon", "npm:7.5.1"],
-            ["@yarnpkg/pnpify", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0-rc.17"],
+            ["@yarnpkg/pnpify", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0-rc.17"],
             ["jest", "npm:25.1.0"],
             ["mocha", "npm:6.2.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["replace-in-file", "npm:4.3.1"],
             ["rimraf", "npm:2.7.1"],
             ["sinon", "npm:7.5.0"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typedoc", "npm:0.14.2"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"],
-            ["typescript-tslint-plugin", "npm:0.3.1"]
+            ["typescript-tslint-plugin", "npm:0.3.1"],
+            ["unfetch", "npm:4.1.0"]
           ],
           "linkType": "SOFT"
         }]
@@ -378,7 +379,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.get", "npm:4.4.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["rimraf", "npm:2.7.1"],
             ["rollup", "npm:1.31.0"],
             ["rollup-plugin-commonjs", "virtual:e4ec9d8503068d6e7e77e086e57d892cca3fd2c880bea0b66e6de9e2960b1da1e46678033b7fd6500b0151d84fd29337ec1af74141fb074d99dabbee8d116024#npm:9.3.4"],
@@ -386,9 +387,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-node-resolve", "npm:4.2.4"],
             ["rollup-plugin-terser", "virtual:e4ec9d8503068d6e7e77e086e57d892cca3fd2c880bea0b66e6de9e2960b1da1e46678033b7fd6500b0151d84fd29337ec1af74141fb074d99dabbee8d116024#npm:4.0.4"],
             ["rollup-plugin-typescript2", "virtual:e4ec9d8503068d6e7e77e086e57d892cca3fd2c880bea0b66e6de9e2960b1da1e46678033b7fd6500b0151d84fd29337ec1af74141fb074d99dabbee8d116024#npm:0.21.2"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
           ],
           "linkType": "SOFT"
@@ -407,11 +408,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.1.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["rimraf", "npm:2.7.1"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
           ],
           "linkType": "SOFT"
@@ -427,15 +428,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:25.1.1"],
             ["@types/node", "npm:13.7.0"],
             ["@types/node-fetch", "npm:2.5.4"],
+            ["isomorphic-unfetch", "npm:3.0.0"],
             ["jest", "npm:25.1.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["rimraf", "npm:2.7.1"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
-            ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
+            ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"],
+            ["unfetch", "npm:4.1.0"]
           ],
           "linkType": "SOFT"
         }]
@@ -450,20 +453,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.1.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
           ],
           "linkType": "SOFT"
         }]
       ]],
-      ["@indentapis/sdk-js", [
+      ["@indentapis/indent-js", [
         ["workspace:.", {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@indentapis/sdk-js", "workspace:."],
+            ["@indentapis/indent-js", "workspace:."],
             ["@types/chai", "npm:4.2.8"],
             ["@types/jest", "npm:24.9.1"],
             ["@types/mocha", "npm:5.2.7"],
@@ -471,21 +474,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node-fetch", "npm:2.5.4"],
             ["@types/raven", "npm:2.5.3"],
             ["@types/sinon", "npm:7.5.1"],
-            ["@yarnpkg/pnpify", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0-rc.17"],
+            ["@yarnpkg/pnpify", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0-rc.17"],
             ["jest", "npm:25.1.0"],
             ["mocha", "npm:6.2.2"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["replace-in-file", "npm:4.3.1"],
             ["rimraf", "npm:2.7.1"],
             ["sinon", "npm:7.5.0"],
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.10.0"],
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typedoc", "npm:0.14.2"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"],
-            ["typescript-tslint-plugin", "npm:0.3.1"]
+            ["typescript-tslint-plugin", "npm:0.3.1"],
+            ["unfetch", "npm:4.1.0"]
           ],
           "linkType": "SOFT"
         }]
@@ -1092,10 +1096,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@yarnpkg/pnpify", [
-        ["virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0-rc.17", {
-          "packageLocation": "./.yarn/$$virtual/@yarnpkg-pnpify-virtual-67649b062e/0/cache/@yarnpkg-pnpify-npm-2.0.0-rc.17-744d708e7e-1.zip/node_modules/@yarnpkg/pnpify/",
+        ["virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0-rc.17", {
+          "packageLocation": "./.yarn/$$virtual/@yarnpkg-pnpify-virtual-d64efb5b8b/0/cache/@yarnpkg-pnpify-npm-2.0.0-rc.17-744d708e7e-1.zip/node_modules/@yarnpkg/pnpify/",
           "packageDependencies": [
-            ["@yarnpkg/pnpify", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0-rc.17"],
+            ["@yarnpkg/pnpify", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0-rc.17"],
             ["@yarnpkg/fslib", "npm:2.0.0-rc.15"],
             ["comment-json", "npm:2.4.1"],
             ["cross-spawn", "npm:6.0.5"],
@@ -5184,10 +5188,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["prettier-check", [
-        ["virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0", {
-          "packageLocation": "./.yarn/$$virtual/prettier-check-virtual-008fdfa7c4/0/cache/prettier-check-npm-2.0.0-f8d6b347cb-1.zip/node_modules/prettier-check/",
+        ["virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0", {
+          "packageLocation": "./.yarn/$$virtual/prettier-check-virtual-4fab1c9923/0/cache/prettier-check-npm-2.0.0-f8d6b347cb-1.zip/node_modules/prettier-check/",
           "packageDependencies": [
-            ["prettier-check", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:2.0.0"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["execa", "npm:0.6.3"],
             ["prettier", "npm:1.19.1"]
           ],
@@ -6517,10 +6521,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ts-jest", [
-        ["virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0", {
-          "packageLocation": "./.yarn/$$virtual/ts-jest-virtual-799133ff5d/0/cache/ts-jest-npm-25.1.0-090121d766-1.zip/node_modules/ts-jest/",
+        ["virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0", {
+          "packageLocation": "./.yarn/$$virtual/ts-jest-virtual-9e17be6a4a/0/cache/ts-jest-npm-25.1.0-090121d766-1.zip/node_modules/ts-jest/",
           "packageDependencies": [
-            ["ts-jest", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:25.1.0"],
+            ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["bs-logger", "npm:0.2.6"],
             ["buffer-from", "npm:1.1.1"],
             ["fast-json-stable-stringify", "npm:2.1.0"],
@@ -6556,10 +6560,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["tslint", [
-        ["virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1", {
-          "packageLocation": "./.yarn/$$virtual/tslint-virtual-17388ae428/0/cache/tslint-npm-5.20.1-c3ddb1b8bc-1.zip/node_modules/tslint/",
+        ["virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1", {
+          "packageLocation": "./.yarn/$$virtual/tslint-virtual-ce206410f8/0/cache/tslint-npm-5.20.1-c3ddb1b8bc-1.zip/node_modules/tslint/",
           "packageDependencies": [
-            ["tslint", "virtual:3903436ff1937fd2eeaa29ef5e5f7072ac277e92a36d8d505cd8190518b31054398b7c24e896d2b2b3bd13539fbf55516f52afa7cea12169e1b3da8ab79df13e#npm:5.20.1"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["@babel/code-frame", "npm:7.8.3"],
             ["builtin-modules", "npm:1.1.1"],
             ["chalk", "npm:2.4.2"],
@@ -6572,7 +6576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["resolve", "patch:resolve@npm%3A1.15.0#builtin<compat/resolve>::version=1.15.0&hash=8fccd0"],
             ["semver", "npm:5.7.1"],
             ["tslib", "npm:1.10.0"],
-            ["tsutils", "virtual:17388ae428607c3bd4f66380b5836b10ec5e9bc0109b7caaf13f4eb65f8d6ef57a54cd3ad99c0146fcd940d09a9395868a4f435edcbf3d84bc58f32b9a2c0f8e#npm:2.29.0"],
+            ["tsutils", "virtual:ce206410f869852aff0084acb4f67f62c7cd9aa2b21c3ac5199daaa64343a39111cf0111c76c568393c492f10f69016a3bc3dce4338fba74db1b78988171533d#npm:2.29.0"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
           ],
           "packagePeers": [
@@ -6582,10 +6586,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["tsutils", [
-        ["virtual:17388ae428607c3bd4f66380b5836b10ec5e9bc0109b7caaf13f4eb65f8d6ef57a54cd3ad99c0146fcd940d09a9395868a4f435edcbf3d84bc58f32b9a2c0f8e#npm:2.29.0", {
-          "packageLocation": "./.yarn/$$virtual/tsutils-virtual-895a360c04/0/cache/tsutils-npm-2.29.0-a46b62a46d-1.zip/node_modules/tsutils/",
+        ["virtual:ce206410f869852aff0084acb4f67f62c7cd9aa2b21c3ac5199daaa64343a39111cf0111c76c568393c492f10f69016a3bc3dce4338fba74db1b78988171533d#npm:2.29.0", {
+          "packageLocation": "./.yarn/$$virtual/tsutils-virtual-05fbad9dfb/0/cache/tsutils-npm-2.29.0-a46b62a46d-1.zip/node_modules/tsutils/",
           "packageDependencies": [
-            ["tsutils", "virtual:17388ae428607c3bd4f66380b5836b10ec5e9bc0109b7caaf13f4eb65f8d6ef57a54cd3ad99c0146fcd940d09a9395868a4f435edcbf3d84bc58f32b9a2c0f8e#npm:2.29.0"],
+            ["tsutils", "virtual:ce206410f869852aff0084acb4f67f62c7cd9aa2b21c3ac5199daaa64343a39111cf0111c76c568393c492f10f69016a3bc3dce4338fba74db1b78988171533d#npm:2.29.0"],
             ["tslib", "npm:1.10.0"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"]
           ],

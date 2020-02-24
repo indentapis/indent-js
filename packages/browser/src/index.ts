@@ -1,5 +1,5 @@
 import { Plugins as CorePlugins, processEventWithPlugins } from '@indent/core'
-import { IAuditAPI, Event } from '@indent/types'
+import { IAuditAPI, IWriteOptions, Event } from '@indent/types'
 import { getGlobalScope } from './utils/global'
 import * as BrowserPlugins from './plugins'
 
@@ -31,7 +31,7 @@ function flush() {
 
   if (!dsn) {
     throw new Error(
-      `‣ missing: audit.init({ dsn }) - https://indent.fyi/sdk/js/missing-dsn`
+      `‣ missing: audit.init({ dsn }) - https://indent.fyi/indent-js/audit/missing-dsn`
     )
   }
 
@@ -67,10 +67,10 @@ const audit: IAuditAPI = {
     config.dsn = dsn
     config.debug = debug
   },
-  write: (event: Event) => {
+  write: (event: Event, options: IWriteOptions) => {
     queue.push(event)
 
-    if (queue.length === BATCH_SIZE) {
+    if (options.flushImmediately || queue.length === BATCH_SIZE) {
       clearTimeout(flushTimeout)
       flush()
     } else {
@@ -80,3 +80,5 @@ const audit: IAuditAPI = {
 }
 
 export { audit, PLUGINS as Plugins }
+
+export default { audit }

@@ -36,7 +36,11 @@ export interface IAuditAPIOptions {
   debug?: false
 }
 
+export interface IWriteOptions {
+  flushImmediately?: boolean
+}
+
 export interface IAuditAPI {
   init: (options: IAuditAPIOptions) => void
-  write: (event: Event) => void
+  write: (event: Event, options: IWriteOptions) => void
 }

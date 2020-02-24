@@ -1,11 +1,9 @@
 {
   "name": "@indentapis/indent-js",
+  "version": "0.1.6",
   "private": true,
   "workspaces": [
-    "packages/types",
-    "packages/core",
-    "packages/node",
-    "packages/browser"
+    "packages/*"
   ],
   "devDependencies": {
     "@types/chai": "^4.1.3",
@@ -35,8 +33,8 @@
     "unfetch": "^4.1.0"
   },
   "scripts": {
-    "build": "yarn workspaces foreach --topological --parallel --verbose run build",
-    "publish": "yarn workspaces foreach --parallel npm publish",
-    "test": "yarn workspaces foreach --parallel run test"
+    "build": "yarn workspaces foreach -pt --verbose run build",
+    "publish": "yarn workspaces foreach -pt npm publish",
+    "test": "yarn workspaces foreach -pt run test"
   }
 }

@@ -1,6 +1,5 @@
 node_modules
 .vscode/pnpify
-.yarn/versions
-packages/**/esm*
-packages/**/dist*
-packages/**/coverage*
+packages/**/esm
+packages/**/dist
+packages/**/coverage

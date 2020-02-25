@@ -67,7 +67,7 @@ const audit: IAuditAPI = {
     config.dsn = dsn
     config.debug = debug
   },
-  write: (event: Event, options: IWriteOptions) => {
+  write: (event: Event, options?: IWriteOptions) => {
     queue.push(event)
 
     if ((options && options.flushImmediately) || queue.length === BATCH_SIZE) {

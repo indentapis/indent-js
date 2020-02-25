@@ -3,4 +3,6 @@ releases:
 
 undecided:
   - "@indentapis/indent-js"
-  - "@indent/node"
+  - "@indent/browser"
+  - "@indent/core"
+  - "@indent/types"

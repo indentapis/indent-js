@@ -354,10 +354,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@indent/node", "workspace:packages/node"],
             ["@indent/core", "workspace:packages/core"],
             ["@indent/types", "workspace:packages/types"],
+            ["@types/isomorphic-fetch", "npm:0.0.35"],
             ["@types/jest", "npm:25.1.1"],
             ["@types/node", "npm:13.7.0"],
             ["@types/node-fetch", "npm:2.5.4"],
-            ["isomorphic-unfetch", "npm:3.0.0"],
+            ["es6-promise", "npm:4.2.8"],
+            ["isomorphic-fetch", "npm:2.2.1"],
             ["jest", "npm:25.1.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
@@ -366,8 +368,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
             ["tslib", "npm:1.11.0"],
             ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
-            ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"],
-            ["unfetch", "npm:4.1.0"]
+            ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"]
           ],
           "linkType": "SOFT",
         }]
@@ -803,6 +804,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-highlight.js-npm-9.12.3-ef4bb80884-2.zip/node_modules/@types/highlight.js/",
           "packageDependencies": [
             ["@types/highlight.js", "npm:9.12.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/isomorphic-fetch", [
+        ["npm:0.0.35", {
+          "packageLocation": "./.yarn/cache/@types-isomorphic-fetch-npm-0.0.35-9dc60b5011-2.zip/node_modules/@types/isomorphic-fetch/",
+          "packageDependencies": [
+            ["@types/isomorphic-fetch", "npm:0.0.35"]
           ],
           "linkType": "HARD",
         }]
@@ -2144,6 +2154,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["encoding", [
+        ["npm:0.1.12", {
+          "packageLocation": "./.yarn/cache/encoding-npm-0.1.12-1a16b5c5e9-2.zip/node_modules/encoding/",
+          "packageDependencies": [
+            ["encoding", "npm:0.1.12"],
+            ["iconv-lite", "npm:0.4.24"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["end-of-stream", [
         ["npm:1.4.4", {
           "packageLocation": "./.yarn/cache/end-of-stream-npm-1.4.4-497fc6dee1-2.zip/node_modules/end-of-stream/",
@@ -2201,6 +2221,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-callable", "npm:1.1.5"],
             ["is-date-object", "npm:1.0.2"],
             ["is-symbol", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["es6-promise", [
+        ["npm:4.2.8", {
+          "packageLocation": "./.yarn/cache/es6-promise-npm-4.2.8-c9f5b11f66-2.zip/node_modules/es6-promise/",
+          "packageDependencies": [
+            ["es6-promise", "npm:4.2.8"]
           ],
           "linkType": "HARD",
         }]
@@ -3300,6 +3329,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/isobject-npm-3.0.1-8145901fd2-2.zip/node_modules/isobject/",
           "packageDependencies": [
             ["isobject", "npm:3.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["isomorphic-fetch", [
+        ["npm:2.2.1", {
+          "packageLocation": "./.yarn/cache/isomorphic-fetch-npm-2.2.1-46b4db5d7b-2.zip/node_modules/isomorphic-fetch/",
+          "packageDependencies": [
+            ["isomorphic-fetch", "npm:2.2.1"],
+            ["node-fetch", "npm:1.7.3"],
+            ["whatwg-fetch", "npm:3.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -4540,6 +4580,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["node-fetch", [
+        ["npm:1.7.3", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-1.7.3-eb8372f991-2.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:1.7.3"],
+            ["encoding", "npm:0.1.12"],
+            ["is-stream", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.6.0", {
           "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.0-29c7a53447-2.zip/node_modules/node-fetch/",
           "packageDependencies": [
@@ -6910,6 +6959,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["whatwg-encoding", "npm:1.0.5"],
             ["iconv-lite", "npm:0.4.24"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["whatwg-fetch", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/whatwg-fetch-npm-3.0.0-89ab4ec112-2.zip/node_modules/whatwg-fetch/",
+          "packageDependencies": [
+            ["whatwg-fetch", "npm:3.0.0"]
           ],
           "linkType": "HARD",
         }]

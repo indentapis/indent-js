@@ -1,7 +1,7 @@
 import { Plugins as CorePlugins, processEventWithPlugins } from '@indent/core'
 import { IAuditAPI, IWriteOptions, Event } from '@indent/types'
 import * as NodePlugins from './plugins'
-import fetch from 'unfetch'
+import fetch from 'isomorphic-fetch'
 
 const PLUGINS = {
   ...CorePlugins,
@@ -55,7 +55,7 @@ const audit: IAuditAPI = {
     config.dsn = dsn
     config.debug = debug
   },
-  write: (event: Event, options: IWriteOptions) => {
+  write: (event: Event, options?: IWriteOptions) => {
     queue.push(event)
 
     if ((options && options.flushImmediately) || queue.length === BATCH_SIZE) {

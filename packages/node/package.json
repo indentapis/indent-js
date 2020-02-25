@@ -1,6 +1,6 @@
 {
   "name": "@indent/node",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -26,11 +26,12 @@
   "dependencies": {
     "@indent/core": "workspace:*",
     "@indent/types": "workspace:*",
-    "isomorphic-unfetch": "^3.0.0",
-    "tslib": "^1.11.0",
-    "unfetch": "^4.1.0"
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
     "@types/jest": "^25.1.1",
     "@types/node": "^13.7.0",
     "@types/node-fetch": "^2.5.4",

@@ -16,11 +16,11 @@ export type Resource = {
 export type Event = {
   // Required
   event: string
-  timestamp: string
 
   // Optional
   id?: string
   actor?: Actor
+  timestamp?: string
   sessionId?: string
   externalId?: string
   resources?: Resource[]
@@ -33,7 +33,7 @@ export type WriteRequest = {
 
 export interface IAuditAPIOptions {
   dsn?: string
-  debug?: false
+  debug?: boolean
 }
 
 export interface IWriteOptions {
@@ -42,5 +42,5 @@ export interface IWriteOptions {
 
 export interface IAuditAPI {
   init: (options: IAuditAPIOptions) => void
-  write: (event: Event, options: IWriteOptions) => void
+  write: (event: Event, options?: IWriteOptions) => void
 }

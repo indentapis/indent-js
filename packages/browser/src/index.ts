@@ -31,7 +31,7 @@ function flush() {
 
   if (!dsn) {
     throw new Error(
-      `‣ missing: audit.init({ dsn }) - https://indent.fyi/indent-js/audit/missing-dsn`
+      `‣ missing: audit.init({ dsn }) - https://indent.fyi/indent-js/audit-missing-dsn`
     )
   }
 
@@ -70,7 +70,7 @@ const audit: IAuditAPI = {
   write: (event: Event, options: IWriteOptions) => {
     queue.push(event)
 
-    if (options.flushImmediately || queue.length === BATCH_SIZE) {
+    if ((options && options.flushImmediately) || queue.length === BATCH_SIZE) {
       clearTimeout(flushTimeout)
       flush()
     } else {

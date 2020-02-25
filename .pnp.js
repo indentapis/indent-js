@@ -23,8 +23,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:."
       },
       {
-        "name": "@indent/types",
-        "reference": "workspace:packages/types"
+        "name": "@indent/browser",
+        "reference": "workspace:packages/browser"
       },
       {
         "name": "@indent/core",
@@ -35,8 +35,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/node"
       },
       {
-        "name": "@indent/browser",
-        "reference": "workspace:packages/browser"
+        "name": "@indent/types",
+        "reference": "workspace:packages/types"
       }
     ],
     "enableTopLevelFallback": true,
@@ -317,7 +317,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-terser", "virtual:e4ec9d8503068d6e7e77e086e57d892cca3fd2c880bea0b66e6de9e2960b1da1e46678033b7fd6500b0151d84fd29337ec1af74141fb074d99dabbee8d116024#npm:4.0.4"],
             ["rollup-plugin-typescript2", "virtual:e4ec9d8503068d6e7e77e086e57d892cca3fd2c880bea0b66e6de9e2960b1da1e46678033b7fd6500b0151d84fd29337ec1af74141fb074d99dabbee8d116024#npm:0.21.2"],
             ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
-            ["tslib", "npm:1.10.0"],
+            ["tslib", "npm:1.11.0"],
             ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"]
           ],
@@ -340,7 +340,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["rimraf", "npm:2.7.1"],
             ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
-            ["tslib", "npm:1.10.0"],
+            ["tslib", "npm:1.11.0"],
             ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"]
           ],
@@ -364,7 +364,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
             ["rimraf", "npm:2.7.1"],
             ["ts-jest", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:25.1.0"],
-            ["tslib", "npm:1.10.0"],
+            ["tslib", "npm:1.11.0"],
             ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"],
             ["unfetch", "npm:4.1.0"]
@@ -6489,6 +6489,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-1.10.0-9261539b46-2.zip/node_modules/tslib/",
           "packageDependencies": [
             ["tslib", "npm:1.10.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.11.0", {
+          "packageLocation": "./.yarn/cache/tslib-npm-1.11.0-3c1da23193-2.zip/node_modules/tslib/",
+          "packageDependencies": [
+            ["tslib", "npm:1.11.0"]
           ],
           "linkType": "HARD",
         }],

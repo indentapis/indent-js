@@ -1,6 +1,6 @@
 {
   "name": "@indentapis/indent-js",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -34,7 +34,10 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -pt --verbose run build",
-    "publish": "yarn workspaces foreach -pt npm publish",
-    "test": "yarn workspaces foreach -pt run test"
+    "publish": "yarn workspaces foreach -pt --exclude @indentapis/indent-js npm publish",
+    "test": "yarn workspaces foreach -pt run test",
+    "bump-patch": "yarn workspaces foreach -t version patch -i",
+    "bump-minor": "yarn workspaces foreach -t version minor -i",
+    "bump-major": "yarn workspaces foreach -t version major -i"
   }
 }

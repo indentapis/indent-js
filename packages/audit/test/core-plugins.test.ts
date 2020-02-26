@@ -1,4 +1,5 @@
-import { processEventWithPlugins, Plugins } from '../src'
+import { processEventWithPlugins } from '../src/plugins'
+import { Plugins } from '../src'
 
 describe('CorePlugins', () => {
   describe('processEventWithPlugins', () => {

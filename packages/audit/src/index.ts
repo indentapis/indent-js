@@ -1,11 +1,35 @@
-import { Plugins as CorePlugins, processEventWithPlugins } from '@indent/core'
+import { fetch } from './utils/fetch'
+import { getGlobalScope } from './utils/global'
+import * as BrowserPlugins from './plugins/browser'
 import { IAuditAPI, IWriteOptions, Event } from '@indent/types'
-import * as NodePlugins from './plugins'
-import fetch from 'isomorphic-fetch'
+import { TimestampPlugin, processEventWithPlugins } from './plugins'
 
-const PLUGINS = {
-  ...CorePlugins,
-  ...NodePlugins
+const CorePlugins = {
+  TimestampPlugin
+}
+
+let windowPlugins = {}
+let isBrowser = typeof window !== 'undefined'
+
+// This block is needed to add compatibility with the plugins packages when used with a CDN
+// tslint:disable: no-unsafe-any
+const _global = getGlobalScope<Window>()
+
+if (_global.Indent && _global.Indent.Plugins) {
+  windowPlugins = _global.Indent.Plugins
+}
+// tslint:enable: no-unsafe-any
+
+let PLUGINS = {
+  ...windowPlugins,
+  ...CorePlugins
+}
+
+if (isBrowser) {
+  PLUGINS = {
+    ...PLUGINS,
+    ...BrowserPlugins
+  }
 }
 
 let config = { dsn: '', debug: false }

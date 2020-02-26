@@ -1,4 +1,7 @@
-import { getGlobalScope as _getGlobalScope, GlobalScope } from '../utils/global'
+import {
+  getGlobalScope as _getGlobalScope,
+  GlobalScope
+} from '../../utils/global'
 import { Event, Plugin } from '@indent/types'
 import { default as get } from 'lodash.get'
 

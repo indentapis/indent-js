@@ -1,6 +1,6 @@
 {
   "name": "@indentapis/indent-js",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -39,5 +39,8 @@
     "bump-patch": "yarn workspaces foreach -t version patch -i",
     "bump-minor": "yarn workspaces foreach -t version minor -i",
     "bump-major": "yarn workspaces foreach -t version major -i"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

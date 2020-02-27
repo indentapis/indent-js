@@ -11,7 +11,10 @@ ide: .vscode/pnpify
 test: prepare
 	yarn test
 
-patch:
+clean-versions:
+	rm -r .yarn/versions
+
+patch: clean-versions
 	yarn bump-patch
 
 minor:

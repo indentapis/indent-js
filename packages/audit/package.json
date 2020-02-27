@@ -1,6 +1,6 @@
 {
   "name": "@indent/audit",
-  "version": "0.0.9",
+  "version": "0.0.14",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,8 @@
     "@indent/types": "workspace:*",
     "isomorphic-unfetch": "^3.0.0",
     "lodash.get": "^4.4.2",
-    "tslib": "^1.11.0"
+    "tslib": "^1.11.0",
+    "unfetch": "^4.1.0"
   },
   "devDependencies": {
     "@types/jest": "^25.1.1",

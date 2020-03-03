@@ -33,7 +33,7 @@ if (isBrowser) {
 }
 
 let config = { dsn: '', debug: false }
-let flushTimeout = setTimeout(() => {}, 0)
+let flushTimeout: NodeJS.Timeout
 let queue: Event[] = []
 
 const BATCH_SIZE = 1000

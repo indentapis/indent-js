@@ -1,7 +1,7 @@
-import { fetch } from './utils/fetch'
 import { getGlobalScope } from './utils/global'
 import * as BrowserPlugins from './plugins/browser'
-import { IAuditAPI, IWriteOptions, Event } from '@indent/types'
+import { fetch as fetchFromUtils } from './utils/fetch'
+import { IAuditAPI, IWriteOptions, Event, IAuditAPIOptions } from '@indent/types'
 import { TimestampPlugin, processEventWithPlugins } from './plugins'
 
 const CorePlugins = {
@@ -32,14 +32,15 @@ if (isBrowser) {
   }
 }
 
-let config = { dsn: '', debug: false }
+let config: IAuditAPIOptions = { dsn: '', debug: false }
 let flushTimeout: NodeJS.Timeout
 let queue: Event[] = []
 
 const BATCH_SIZE = 1000
 
 function flush() {
-  const { dsn, debug } = config
+  const { dsn, debug, fetch: fetchFromConfig } = config
+  let fetch = fetchFromConfig || fetchFromUtils
 
   if (!dsn) {
     throw new Error(
@@ -75,9 +76,10 @@ function flush() {
 }
 
 const audit: IAuditAPI = {
-  init: ({ dsn = '', debug = false }) => {
+  init: ({ dsn = '', debug = false, fetch }) => {
     config.dsn = dsn
     config.debug = debug
+    config.fetch = fetch
   },
   write: (event: Event, options?: IWriteOptions) => {
     queue.push(event)

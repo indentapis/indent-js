@@ -34,6 +34,10 @@ export type WriteRequest = {
 export interface IAuditAPIOptions {
   dsn?: string
   debug?: boolean
+  fetch?: (
+    input: RequestInfo,
+    init?: RequestInit | undefined
+  ) => Promise<Response>
 }
 
 export interface IWriteOptions {

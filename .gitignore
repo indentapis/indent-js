@@ -4,6 +4,10 @@ node_modules
 packages/**/esm
 packages/**/dist
 packages/**/browser
+<<<<<<< HEAD
 packages/**/coverage
 examples/**/node_modules
 examples/**/yarn.lock
+=======
+packages/**/coverage
+>>>>>>> add(packages/audit): browser bundle

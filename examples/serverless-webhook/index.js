@@ -1,7 +1,7 @@
 const { verify } = require('@indent/webhook')
 
 exports.handle = async function handle(event, context, cb) {
-  const body = JSON.parse(event)
+  const body = JSON.parse(event.body)
 
   await verify({
     secret: process.env.INDENT_SIGNING_SECRET,

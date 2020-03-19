@@ -1,0 +1,6 @@
+{
+  "name": "indent-access-request-webhook",
+  "env": {
+    "INDENT_SIGNING_SECRET": "@INDENT_SIGNING_SECRET"
+  }
+}

@@ -5,3 +5,5 @@ packages/**/esm
 packages/**/dist
 packages/**/browser
 packages/**/coverage
+examples/**/node_modules
+examples/**/yarn.lock

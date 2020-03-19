@@ -1,0 +1,23 @@
+{
+  "name": "@indent/serverless-access-request-webhook",
+  "version": "0.0.0",
+  "description": "A Node.js starter for the Serverless Framework with Indent.",
+  "main": "index.js",
+  "scripts": {
+    "test": "serverless-bundle test"
+  },
+  "author": "Indent Inc <open@indent.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indentapis/indent-js.git"
+  },
+  "devDependencies": {
+    "serverless-bundle": "^1.2.5",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.3.3"
+  },
+  "dependencies": {
+    "@indent/webhook": "*"
+  }
+}

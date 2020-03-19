@@ -1,0 +1,12 @@
+service: indent-access-request-webhook
+provider:
+  name: aws
+
+functions:
+  time:
+    runtime: nodejs6.10
+    events:
+      - http:
+          method: post
+          path: webhook
+    handler: index.handle

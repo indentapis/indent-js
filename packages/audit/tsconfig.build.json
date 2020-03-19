@@ -3,6 +3,8 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

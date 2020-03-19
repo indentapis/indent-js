@@ -1,7 +1,12 @@
 import { getGlobalScope } from './utils/global'
 import * as BrowserPlugins from './plugins/browser'
 import { fetch as fetchFromUtils } from './utils/fetch'
-import { IAuditAPI, IWriteOptions, Event, IAuditAPIOptions } from '@indent/types'
+import {
+  IAuditAPI,
+  IWriteOptions,
+  Event,
+  IAuditAPIOptions
+} from '@indent/types'
 import { TimestampPlugin, processEventWithPlugins } from './plugins'
 
 const CorePlugins = {
@@ -90,6 +95,16 @@ const audit: IAuditAPI = {
     } else {
       flushTimeout = setTimeout(flush, 500) // flush every 500ms
     }
+  }
+}
+
+if (isBrowser && typeof document !== 'undefined') {
+  // Loaded via CDN or <script />
+  if (document.currentScript) {
+    let dsn = document.currentScript.getAttribute('data-input-dsn') || ''
+    let debug = document.currentScript.getAttribute('data-debug') === 'true'
+
+    audit.init({ dsn, debug })
   }
 }
 

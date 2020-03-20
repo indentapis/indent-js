@@ -1,6 +1,5 @@
 import license from 'rollup-plugin-license'
 import { terser } from 'rollup-plugin-terser'
-import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import typescript from 'rollup-plugin-typescript2'
 
@@ -23,21 +22,12 @@ const paths = {
 
 const plugins = [
   typescript({
-    tsconfig: 'tsconfig.build.json',
-    tsconfigOverride: {
-      compilerOptions: {
-        declaration: false,
-        declarationMap: false,
-        module: 'ES2015',
-        paths
-      }
-    },
+    tsconfig: 'tsconfig.bundle.json',
     include: ['*.ts+(|x)', '**/*.ts+(|x)', '../**/*.ts+(|x)']
   }),
   resolve({
     mainFields: ['module']
   })
-  // commonjs()
 ]
 
 const bundleConfig = {
@@ -89,13 +79,9 @@ export default [
     },
     plugins: [
       typescript({
-        tsconfig: 'tsconfig.build.json',
+        tsconfig: 'tsconfig.bundle.json',
         tsconfigOverride: {
           compilerOptions: {
-            declaration: false,
-            declarationMap: false,
-            module: 'ES2015',
-            paths,
             target: 'es6'
           }
         },
@@ -112,13 +98,9 @@ export default [
     },
     plugins: [
       typescript({
-        tsconfig: 'tsconfig.build.json',
+        tsconfig: 'tsconfig.bundle.json',
         tsconfigOverride: {
           compilerOptions: {
-            declaration: false,
-            declarationMap: false,
-            module: 'ES2015',
-            paths,
             target: 'es6'
           }
         },

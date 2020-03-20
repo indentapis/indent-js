@@ -1,6 +1,6 @@
 {
   "name": "@indentapis/indent-js",
-  "version": "0.1.24",
+  "version": "0.1.26",
   "private": true,
   "workspaces": [
     "packages/*"

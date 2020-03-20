@@ -201,14 +201,12 @@ __metadata:
   dependencies:
     "@indent/types": "workspace:packages/types"
     "@types/jest": ^25.1.1
-    "@types/lodash": ^4.14.149
-    "@types/node": ^13.7.0
+    "@types/node": ^13.9.2
     "@types/node-fetch": ^2.5.4
     "@types/rollup-plugin-commonjs": 9.3.1
     "@types/rollup-plugin-node-resolve": 4.1.0
     isomorphic-unfetch: ^3.0.0
     jest: ^25.1.0
-    lodash: ^4.17.15
     npm-run-all: ^4.1.2
     prettier: ^1.17.0
     prettier-check: ^2.0.0
@@ -694,7 +692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.110, @types/lodash@npm:^4.14.149":
+"@types/lodash@npm:^4.14.110":
   version: 4.14.149
   resolution: "@types/lodash@npm:4.14.149"
   checksum: 2/f5b8837c776d471755f8d48536933031e5753da4277d1e5a0ebd46caf392adc2a298eeb2812f2da8d1801fa1c666c9112207204e73e06c11bdcf1bf179f304fa
@@ -752,6 +750,13 @@ __metadata:
   version: 13.7.0
   resolution: "@types/node@npm:13.7.0"
   checksum: 2/cfdb8577f650e20f850d706854a6ff5a43cf222ab8a760d102d909820645cb7da74da67283155c4f5278ca9a3ab2f2d3a4fde6af50bcf3d8280264a9b7998be8
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^13.9.2":
+  version: 13.9.2
+  resolution: "@types/node@npm:13.9.2"
+  checksum: 2/d462ab643ff00eb7b64883cd9a42b2318e5283b397afbe96310cac62e4f48ec97983ee99aa59c6a63c3e302fcd004d30d549889dbc6c712abb566572d92fa533
   languageName: node
   linkType: hard
 

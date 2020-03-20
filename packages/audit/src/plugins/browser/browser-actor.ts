@@ -3,9 +3,7 @@ import {
   GlobalScope
 } from '../../utils/global'
 import { Event, Plugin } from '@indent/types'
-import * as lodash from 'lodash'
-
-const { get } = lodash
+import { get } from '../../utils/get'
 
 interface BrowserActorOptions {
   idLookupKeys?: string[]

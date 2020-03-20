@@ -295,14 +295,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@indent/audit", "workspace:packages/audit"],
             ["@indent/types", "workspace:packages/types"],
             ["@types/jest", "npm:25.1.1"],
-            ["@types/lodash", "npm:4.14.149"],
-            ["@types/node", "npm:13.7.0"],
+            ["@types/node", "npm:13.9.2"],
             ["@types/node-fetch", "npm:2.5.4"],
             ["@types/rollup-plugin-commonjs", "npm:9.3.1"],
             ["@types/rollup-plugin-node-resolve", "npm:4.1.0"],
             ["isomorphic-unfetch", "npm:3.0.0"],
             ["jest", "npm:25.1.0"],
-            ["lodash", "npm:4.17.15"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],
             ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
@@ -876,6 +874,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-13.7.0-6051c9578d-2.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:13.7.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:13.9.2", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-13.9.2-d069dc6c73-2.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:13.9.2"]
           ],
           "linkType": "HARD",
         }]

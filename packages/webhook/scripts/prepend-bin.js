@@ -1,0 +1,5 @@
+const fs = require('fs')
+const path = require('path')
+const filepath = path.resolve(__dirname, '../dist/bin/test.js')
+const data = fs.readFileSync(filepath)
+fs.writeFileSync(filepath, '#!/usr/bin/env node\n' + data)

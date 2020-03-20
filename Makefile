@@ -27,6 +27,8 @@ build:
 	yarn build
 
 publish: build
-	yarn workspace @indent/types npm publish && yarn workspace @indent/audit npm publish
+	yarn workspace @indent/types npm publish \
+		&& yarn workspace @indent/audit npm publish \
+		&& yarn workspace @indent/webhook npm publish
 
 @PHONY: test

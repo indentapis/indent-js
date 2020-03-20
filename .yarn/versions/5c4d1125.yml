@@ -3,4 +3,5 @@ releases:
 
 undecided:
   - "@indentapis/indent-js"
+  - "@indent/audit"
   - "@indent/types"

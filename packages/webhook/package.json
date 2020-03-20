@@ -1,26 +1,29 @@
 {
   "name": "@indent/webhook",
-  "version": "0.0.17",
+  "version": "0.0.20",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "indent-webhook-test": "./dist/bin/test.js"
+  },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@types/node": "^13.7.0",
-    "@types/node-fetch": "^2.5.4",
+    "@types/node-fetch": "2.5.5",
     "jest": "^25.1.0",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.17.0",
     "prettier-check": "^2.0.0",
     "ts-jest": "^25.1.0",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.1",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "build": "run-p build:es5 build:esm",
+    "build": "run-p build:es5 build:esm && node ./scripts/prepend-bin.js",
     "build:es5": "tsc -p tsconfig.build.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:watch": "run-p build:watch:es5 build:watch:esm",
@@ -35,5 +38,11 @@
     "fix:prettier": "prettier --write \"{src,test}/**/*.ts\"",
     "fix:tslint": "tslint --fix -t stylish -p ."
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@indent/types": "workspace:packages/types",
+    "arg": "^4.1.3",
+    "node-fetch": "^2.6.0",
+    "tslib": "^1.11.0"
+  }
 }

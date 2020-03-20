@@ -3,8 +3,8 @@ provider:
   name: aws
 
 functions:
-  time:
-    runtime: nodejs6.10
+  webhook:
+    runtime: nodejs8.10
     events:
       - http:
           method: post

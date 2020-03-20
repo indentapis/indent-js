@@ -13,18 +13,14 @@ exports.handle = async function handle(event, context, cb) {
   const { events } = body
 
   await Promise.all(
-    events.map(({ event, actor, resources }) => {
+    events.map(auditEvent => {
+      let { event } = auditEvent
+
       switch (event) {
         case 'access/request/approved':
-          return grantPermission({
-            actor,
-            resources
-          })
+          return grantPermission(auditEvent)
         case 'access/grant/revoked':
-          return revokePermission({
-            actor,
-            resources
-          })
+          return revokePermission(auditEvent)
         default:
           return Promise.resolve()
       }
@@ -37,15 +33,19 @@ exports.handle = async function handle(event, context, cb) {
   }
 }
 
-async function grantPermission({ actor, resources }) {
+async function grantPermission({ event, actor, resources }) {
   const { id } = actor
+
+  console.log({ event, actor, resources })
 
   // - Lookup user ID from actor id (e.g. Slack user id)
   // - Grant them permission(s)
 }
 
-async function revokePermission({ actor, resources }) {
+async function revokePermission({ event, actor, resources }) {
   const { id } = actor
+
+  console.log({ event, actor, resources })
 
   // - Lookup user ID from actor id (e.g. Slack user id)
   // - Revoke their permission(s)

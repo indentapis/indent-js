@@ -2,6 +2,9 @@ service: indent-access-request-webhook
 provider:
   name: aws
 
+plugins:
+  - serverless-plugin-typescript
+
 functions:
   webhook:
     runtime: nodejs8.10
@@ -9,4 +12,9 @@ functions:
       - http:
           method: post
           path: webhook
+          cors:
+            origin: '*'
+            headers:
+              - X-Indent-Signature
+              - X-Indent-Timestamp
     handler: index.handle

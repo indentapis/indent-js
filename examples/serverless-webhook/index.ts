@@ -1,19 +1,21 @@
-const { verify } = require('@indent/webhook')
+import { APIGatewayProxyHandler } from 'aws-lambda'
+import { verify } from '@indent/webhook'
+import * as types from '@indent/types'
 
-exports.handle = async function handle(event, context, cb) {
+export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
   await verify({
     secret: process.env.INDENT_SIGNING_SECRET,
-    timestamp: req.headers['x-indent-timestamp'],
-    signature: req.headers['x-indent-signature'],
+    timestamp: event.headers['x-indent-timestamp'],
+    signature: event.headers['x-indent-signature'],
     body
   })
 
   const { events } = body
 
   await Promise.all(
-    events.map(auditEvent => {
+    events.map((auditEvent: types.Event) => {
       let { event } = auditEvent
 
       switch (event) {
@@ -33,8 +35,8 @@ exports.handle = async function handle(event, context, cb) {
   }
 }
 
-async function grantPermission({ event, actor, resources }) {
-  const { id } = actor
+async function grantPermission(auditEvent: types.Event) {
+  const { event, actor, resources } = auditEvent
 
   console.log({ event, actor, resources })
 
@@ -42,8 +44,8 @@ async function grantPermission({ event, actor, resources }) {
   // - Grant them permission(s)
 }
 
-async function revokePermission({ event, actor, resources }) {
-  const { id } = actor
+async function revokePermission(auditEvent: types.Event) {
+  const { event, actor, resources } = auditEvent
 
   console.log({ event, actor, resources })
 

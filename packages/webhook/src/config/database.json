@@ -1,0 +1,49 @@
+{
+  "entries": [
+    {
+      "events": [
+        {
+          "event": "access/request/approved",
+          "actor": {
+            "id": "dennis-developer",
+            "email": "dennis@example.com",
+            "labels": {
+              "ip": "8.8.8.8"
+            }
+          },
+          "resources": [
+            {
+              "kind": "database/table",
+              "id": "app_users"
+            },
+            {
+              "kind": "access/request#approver",
+              "id": "mary-manager"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "delay": 1000,
+      "events": [
+        {
+          "event": "access/grant/revoked",
+          "actor": {
+            "id": "dennis-developer",
+            "email": "dennis@example.com",
+            "labels": {
+              "ip": "8.8.8.8"
+            }
+          },
+          "resources": [
+            {
+              "kind": "database/table",
+              "id": "app_users"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

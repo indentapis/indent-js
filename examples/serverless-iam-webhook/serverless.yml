@@ -1,0 +1,26 @@
+service: indent-iam-webhook
+provider:
+  name: aws
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - iam:AddUserToGroup
+        - iam:RemoveUserFromGroup
+      Resource: '*'
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  webhook:
+    runtime: nodejs12.x
+    events:
+      - http:
+          method: post
+          path: webhook
+          cors:
+            origin: '*'
+            headers:
+              - X-Indent-Signature
+              - X-Indent-Timestamp
+    handler: index.handle

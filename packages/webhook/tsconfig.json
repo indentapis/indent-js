@@ -1,9 +1,7 @@
 {
-  "extends": "./tsconfig.build.json",
-  "include": ["src/**/*.ts"],
-  "exclude": ["dist"],
   "compilerOptions": {
-    "rootDir": ".",
-    "types": ["node"]
+    "allowSyntheticDefaultImports": true,
+    "target": "es2015",
+    "moduleResolution": "node"
   }
 }

@@ -347,6 +347,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@indent/types", "workspace:packages/types"],
             ["@types/node", "npm:13.7.0"],
             ["@types/node-fetch", "npm:2.5.5"],
+            ["@zeit/ncc", "npm:0.22.0"],
             ["arg", "npm:4.1.3"],
             ["jest", "npm:25.1.0"],
             ["node-fetch", "npm:2.6.0"],
@@ -1034,6 +1035,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "eslint",
             "typescript"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@zeit/ncc", [
+        ["npm:0.22.0", {
+          "packageLocation": "./.yarn/cache/@zeit-ncc-npm-0.22.0-082c5c7235-2.zip/node_modules/@zeit/ncc/",
+          "packageDependencies": [
+            ["@zeit/ncc", "npm:0.22.0"],
+            ["node-gyp", "npm:6.1.0"]
           ],
           "linkType": "HARD",
         }]

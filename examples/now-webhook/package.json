@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "now": "^17.0.4"
+  },
+  "scripts": {
+    "start": "micro"
   }
 }

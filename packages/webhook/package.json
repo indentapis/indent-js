@@ -1,6 +1,6 @@
 {
   "name": "@indent/webhook",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -24,7 +24,7 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "build": "run-p build:es5 build:esm",
+    "build": "run-p build:es5 build:esm && node ./scripts/prepend-bin.js",
     "build:es5": "tsc -p tsconfig.build.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:watch": "run-p build:watch:es5 build:watch:esm",

@@ -1,0 +1,51 @@
+{
+  "entries": [
+    {
+      "events": [
+        {
+          "event": "access/request/approved",
+          "actor": {
+            "id": "dennis-developer",
+            "email": "dennis@example.com",
+            "labels": {
+              "arn": "dennis-developer",
+              "cognitoId": "d697483b81d0b72a37bf"
+            }
+          },
+          "resources": [
+            {
+              "kind": "tenant",
+              "id": "example-inc"
+            },
+            {
+              "kind": "access/request#approver",
+              "id": "mary-manager"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "delay": 10000,
+      "events": [
+        {
+          "event": "access/grant/revoked",
+          "actor": {
+            "id": "dennis-developer",
+            "email": "dennis@example.com",
+            "labels": {
+              "arn": "dennis-developer",
+              "cognitoId": "d697483b81d0b72a37bf"
+            }
+          },
+          "resources": [
+            {
+              "kind": "tenant",
+              "id": "example-inc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

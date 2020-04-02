@@ -12,12 +12,14 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
   await verify({
     secret: process.env.INDENT_SIGNING_SECRET,
-    timestamp: event.headers['x-indent-timestamp'],
-    signature: event.headers['x-indent-signature'],
+    timestamp: event.headers['X-Indent-Timestamp'],
+    signature: event.headers['X-Indent-Signature'],
     body
   })
 
   const { events } = body
+
+  console.log(`Received: ${events.length} events`)
 
   await Promise.all(
     events.map((auditEvent: types.Event) => {
@@ -65,7 +67,7 @@ async function revokePermission(auditEvent: types.Event) {
 
   let groupForResource = 's3-sensitive-access' // derive from resources
   let result = await iam
-    .addUserToGroup({
+    .removeUserFromGroup({
       GroupName: groupForResource,
       UserName: arn
     })

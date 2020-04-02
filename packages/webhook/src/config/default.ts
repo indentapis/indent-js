@@ -1,6 +1,8 @@
 import * as types from '@indent/types'
 
 export type WebhookTestConfig = {
+  apiSecret?: string
+  verifySecret?: string
   entries: WebhookTestConfigEntry[]
 }
 

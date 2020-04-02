@@ -1,19 +1,24 @@
 service: indent-iam-webhook
+
 provider:
   name: aws
+  region: us-west-2
   iamRoleStatements:
     - Effect: Allow
       Action:
         - iam:AddUserToGroup
         - iam:RemoveUserFromGroup
       Resource: '*'
-
-plugins:
-  - serverless-plugin-typescript
+  apiKeys:
+    - name: indent-api-secret
+      value: ${env:INDENT_API_SECRET}
+  environment:
+    INDENT_SIGNING_SECRET: ${env:INDENT_SIGNING_SECRET}
 
 functions:
   webhook:
     runtime: nodejs12.x
+    handler: index.handle
     events:
       - http:
           method: post
@@ -23,4 +28,23 @@ functions:
             headers:
               - X-Indent-Signature
               - X-Indent-Timestamp
-    handler: index.handle
+
+plugins:
+  - serverless-webpack
+
+resources:
+  Resources:
+    s3SensitiveAccess:
+      Type: AWS::IAM::Group
+      Properties:
+        GroupName: s3-sensitive-access
+        Policies:
+          - PolicyName: s3-get-any-object
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Resource:
+                    - '*'
+                  Action:
+                    - 's3:GetObject'

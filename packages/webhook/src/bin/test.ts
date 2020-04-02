@@ -56,7 +56,8 @@ if (!url) {
   process.exit(1)
 }
 
-let testSecret = 'test_secret_0zbtXMScgECutqG'
+let testSecret = config.verifySecret || 'test_secret_0zbtXMScgECutqG'
+let apiSecret = config.apiSecret || 'api_secret_0zbtXMScgECutqG'
 let timestamp = () => new Date().toISOString()
 let sleep = (d: number) => new Promise(resolve => setTimeout(resolve, d))
 
@@ -77,6 +78,7 @@ let complete = Promise.all(
       await fetch(url, {
         method: 'post',
         headers: {
+          Authorization: `Bearer ${apiSecret}`,
           'X-Indent-Timestamp': timestamp(),
           'X-Indent-Signature': signature
         },

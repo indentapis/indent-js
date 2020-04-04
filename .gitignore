@@ -7,5 +7,6 @@ packages/**/dist
 packages/**/browser
 packages/**/coverage
 examples/**/yarn.lock
+examples/**/.serverless
 examples/**/node_modules
 examples/**/package-lock.json

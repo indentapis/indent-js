@@ -34,10 +34,10 @@ plugins:
 
 resources:
   Resources:
-    s3SensitiveAccess:
+    s3Read:
       Type: AWS::IAM::Group
       Properties:
-        GroupName: s3-sensitive-access
+        GroupName: s3-read
         Policies:
           - PolicyName: s3-get-any-object
             PolicyDocument:
@@ -45,6 +45,8 @@ resources:
               Statement:
                 - Effect: Allow
                   Resource:
-                    - '*'
+                    - 'arn:aws:s3:::*'
                   Action:
                     - 's3:GetObject'
+                    - 's3:ListBucket'
+                    - 's3:ListAllMyBuckets'

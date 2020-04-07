@@ -10,25 +10,40 @@ const iam = new AWS.IAM({ apiVersion: '2010-05-08' })
 export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
-  await verify({
-    secret: process.env.INDENT_SIGNING_SECRET,
-    timestamp: event.headers['X-Indent-Timestamp'],
-    signature: event.headers['X-Indent-Signature'],
-    body
-  })
+  try {
+    await verify({
+      secret: process.env.INDENT_SIGNING_SECRET,
+      timestamp: event.headers['X-Indent-Timestamp'],
+      signature: event.headers['X-Indent-Signature'],
+      body
+    })
+  } catch (err) {
+    console.error('@indent/webhook.verify(): failed')
+    console.error(err)
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: { message: err.message } })
+    }
+  }
 
   const { events } = body
 
-  console.log(`Received: ${events.length} events`)
+  console.log(`@indent/webhook: received ${events.length} events`)
 
   await Promise.all(
     events.map((auditEvent: types.Event) => {
-      let { event } = auditEvent
+      let { actor, event, resources } = auditEvent
+
+      console.log(
+        `@indent/webhook: ${event} { actor: ${
+          actor.id
+        }, resources: ${JSON.stringify(resources.map(r => r.id))} }`
+      )
 
       switch (event) {
-        case 'access/request/approved':
+        case 'access/grant':
           return grantPermission(auditEvent)
-        case 'access/grant/revoked':
+        case 'access/revoke':
           return revokePermission(auditEvent)
         default:
           return Promise.resolve()
@@ -44,14 +59,13 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
 async function grantPermission(auditEvent: types.Event) {
   const { event, actor, resources } = auditEvent
-  const { labels = {} } = actor
-  const { arn } = labels
+  const userArn = getArnFromResources(resources, 'user')
+  const groupArn = getArnFromResources(resources, 'group')
 
-  let groupForResource = 's3-sensitive-access' // derive from resources
   let result = await iam
     .addUserToGroup({
-      GroupName: groupForResource,
-      UserName: arn
+      GroupName: groupArn,
+      UserName: userArn
     })
     .promise()
 
@@ -60,18 +74,24 @@ async function grantPermission(auditEvent: types.Event) {
 
 async function revokePermission(auditEvent: types.Event) {
   const { event, actor, resources } = auditEvent
-  const { labels = {} } = actor
-  const { arn } = labels
+  const userArn = getArnFromResources(resources, 'user')
+  const groupArn = getArnFromResources(resources, 'group')
 
-  console.log({ event, actor, resources })
-
-  let groupForResource = 's3-sensitive-access' // derive from resources
   let result = await iam
     .removeUserFromGroup({
-      GroupName: groupForResource,
-      UserName: arn
+      GroupName: groupArn,
+      UserName: userArn
     })
     .promise()
 
   console.log({ event, actor, resources, result })
+}
+
+function getArnFromResources(
+  resources: types.Resource[],
+  kind: string
+): string {
+  return resources
+    .filter(r => r.kind && r.kind.includes(kind))
+    .map(r => (r.labels ? r.labels.arn : ''))[0]
 }

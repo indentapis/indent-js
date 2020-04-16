@@ -6,6 +6,7 @@ packages/**/out
 packages/**/dist
 packages/**/browser
 packages/**/coverage
+examples/**/.webpack
 examples/**/yarn.lock
 examples/**/.serverless
 examples/**/node_modules

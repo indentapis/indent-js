@@ -30,6 +30,7 @@ functions:
               - X-Indent-Timestamp
 
 plugins:
+  - serverless-offline
   - serverless-webpack
 
 resources:

@@ -4,6 +4,7 @@
   "description": "A Node.js starter for the Serverless Framework with Indent.",
   "main": "index.js",
   "scripts": {
+    "dev": "serverless offline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Indent Inc <open@indent.com>",
@@ -14,6 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.9.8",
+    "serverless-offline": "^6.1.4",
     "serverless-webpack": "^5.3.1",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",

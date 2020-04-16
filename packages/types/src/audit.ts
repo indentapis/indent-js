@@ -30,10 +30,16 @@ export type Event = {
   // Optional
   id?: string
   actor?: Actor
+  reason?: string
   timestamp?: string
   sessionId?: string
   externalId?: string
   resources?: Resource[]
+  labels?: EventLabels
+}
+
+export type EventLabels = {
+  [key: string]: string
 }
 
 export type WriteRequest = {

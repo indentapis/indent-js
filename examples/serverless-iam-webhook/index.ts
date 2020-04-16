@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler } from 'aws-lambda'
-import { verify } from '@indent/webhook'
+// import { verify } from '@indent/webhook'
 import * as types from '@indent/types'
 import * as AWS from 'aws-sdk'
 
@@ -11,12 +11,13 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
   try {
-    await verify({
-      secret: process.env.INDENT_SIGNING_SECRET,
-      timestamp: event.headers['X-Indent-Timestamp'],
-      signature: event.headers['X-Indent-Signature'],
-      body
-    })
+    console.warn('@indent/webhook.verify(): skipped')
+    // await verify({
+    //   secret: process.env.INDENT_SIGNING_SECRET,
+    //   timestamp: event.headers['X-Indent-Timestamp'],
+    //   signature: event.headers['X-Indent-Signature'],
+    //   body
+    // })
   } catch (err) {
     console.error('@indent/webhook.verify(): failed')
     console.error(err)
@@ -92,6 +93,12 @@ function getArnFromResources(
   kind: string
 ): string {
   return resources
-    .filter(r => r.kind && r.kind.includes(kind))
-    .map(r => (r.labels ? r.labels.arn : ''))[0]
+    .filter(r => r.kind && r.kind.toLowerCase().includes(kind.toLowerCase()))
+    .map(r => {
+      if (r.labels && r.labels.arn) {
+        return r.labels.arn
+      }
+
+      return r.id
+    })[0]
 }

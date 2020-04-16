@@ -10,7 +10,7 @@
             "altIds": ["mary-manager"]
           },
           "labels": {
-            "com.indent/expires": "2020-04-07T19:23:42.335Z"
+            "indent.com/expires": "2020-04-07T19:23:42.335Z"
           },
           "reason": "debug jira ticket APP-123",
           "resources": [
@@ -25,10 +25,7 @@
             },
             {
               "kind": "aws:iam:group",
-              "id": "example-inc",
-              "labels": {
-                "arn": "s3-read"
-              }
+              "id": "s3-read"
             }
           ]
         }
@@ -57,10 +54,7 @@
             },
             {
               "kind": "aws:iam:group",
-              "id": "example-inc",
-              "labels": {
-                "arn": "s3-read"
-              }
+              "id": "s3-read"
             }
           ]
         }

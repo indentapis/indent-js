@@ -16,26 +16,32 @@ const DEFAULT_TEST_CONFIG: WebhookTestConfig = {
     {
       events: [
         {
-          event: 'access/request/approved',
+          event: 'access/grant',
           actor: {
-            id: 'dennis-developer',
-            email: 'dennis@example.com',
-            labels: {
-              arn: 'arn:aws:iam::000000000000:user/dennis-developer',
-              cognitoId: 'd697483b81d0b72a37bf'
-            }
+            kind: 'slack/user',
+            id: 'TL0Q0MJR7/U9G03MX',
+            altIds: ['mary-manager']
           },
+          labels: {
+            'indent.com/expires': '2020-04-07T19:23:42.335Z'
+          },
+          reason: 'debug jira ticket APP-123',
           resources: [
             {
-              kind: 'tenant',
-              id: 'example-inc',
+              kind: 'slack/user',
+              id: 'TL0Q0MJR7/U822olY',
+              altIds: ['dennis-developer'],
               labels: {
-                expireTime: new Date().toISOString()
+                arn: 'dennis-developer',
+                cognitoId: 'd697483b81d0b72a37bf'
               }
             },
             {
-              kind: 'access/request#approver',
-              id: 'mary-manager'
+              kind: 'aws:iam:group',
+              id: 'example-inc',
+              labels: {
+                arn: 's3-read'
+              }
             }
           ]
         }
@@ -45,19 +51,29 @@ const DEFAULT_TEST_CONFIG: WebhookTestConfig = {
       delay: 1000,
       events: [
         {
-          event: 'access/grant/revoked',
+          event: 'access/revoke',
           actor: {
-            id: 'dennis-developer',
-            email: 'dennis@example.com',
-            labels: {
-              arn: 'arn:aws:iam::000000000000:user/dennis-developer',
-              cognitoId: 'd697483b81d0b72a37bf'
-            }
+            kind: 'slack/user',
+            id: 'TL0Q0MJR7/U9G03MX',
+            altIds: ['mary-manager']
           },
+          reason: 'access grant expired',
           resources: [
             {
-              kind: 'tenant',
-              id: 'example-inc'
+              kind: 'slack/user',
+              id: 'TL0Q0MJR7/U822olY',
+              altIds: ['dennis-developer'],
+              labels: {
+                arn: 'dennis-developer',
+                cognitoId: 'd697483b81d0b72a37bf'
+              }
+            },
+            {
+              kind: 'aws:iam:group',
+              id: 'example-inc',
+              labels: {
+                arn: 's3-read'
+              }
             }
           ]
         }

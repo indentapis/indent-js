@@ -2,6 +2,10 @@
 
 ## How To Use
 
+### Requirements
+
+- [Serverless](https://serverless.com/framework/docs/getting-started/)
+
 ### Download
 
 Download the example:

@@ -3,7 +3,7 @@
   "exclude": [".yarn"],
   "compilerOptions": {
     "baseUrl": "packages",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "paths": { "@indentapis/*": ["*/src"] },
     "alwaysStrict": false,
     "declaration": true,

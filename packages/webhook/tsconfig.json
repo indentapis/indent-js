@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "target": "es2015",
+    "types": ["node", "jest"],
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   }
 }

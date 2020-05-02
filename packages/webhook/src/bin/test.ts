@@ -3,6 +3,7 @@ import DEFAULT_CONFIG, {
   WebhookTestConfigEntry
 } from '../config/default'
 import * as types from '@indent/types'
+import { parse as parseUrl } from 'url'
 import { sign } from '../index'
 import fetch from 'node-fetch'
 import path from 'path'
@@ -69,19 +70,27 @@ let complete = Promise.all(
 
     await sleep(cfg.delay || 0)
 
-    let signature = await sign({
-      secret: testSecret,
-      payload: body
+    let headers: { [k: string]: string } = {
+      Authorization: `Bearer ${apiSecret}`,
+      'X-Indent-Timestamp': timestamp()
+    }
+
+    let parsedUrl = parseUrl(url)
+    let { host, path } = parsedUrl
+    let signature = await sign(testSecret, {
+      host: host || '',
+      path: path || '',
+      body,
+      headers,
+      method: 'POST'
     })
+
+    headers['X-Indent-Signature'] = signature
 
     try {
       await fetch(url, {
         method: 'post',
-        headers: {
-          Authorization: `Bearer ${apiSecret}`,
-          'X-Indent-Timestamp': timestamp(),
-          'X-Indent-Signature': signature
-        },
+        headers,
         body
       })
 

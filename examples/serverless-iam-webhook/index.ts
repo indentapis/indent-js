@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler } from 'aws-lambda'
-// import { verify } from '@indent/webhook'
+import { verify } from '@indent/webhook'
 import * as types from '@indent/types'
 import * as AWS from 'aws-sdk'
 
@@ -10,14 +10,15 @@ const iam = new AWS.IAM({ apiVersion: '2010-05-08' })
 export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
+  console.log(event.path)
+
   try {
-    console.warn('@indent/webhook.verify(): skipped')
-    // await verify({
-    //   secret: process.env.INDENT_SIGNING_SECRET,
-    //   timestamp: event.headers['X-Indent-Timestamp'],
-    //   signature: event.headers['X-Indent-Signature'],
-    //   body
-    // })
+    await verify({
+      secret: process.env.INDENT_SIGNING_SECRET,
+      headers: event.headers,
+      path: event.path,
+      body
+    })
   } catch (err) {
     console.error('@indent/webhook.verify(): failed')
     console.error(err)

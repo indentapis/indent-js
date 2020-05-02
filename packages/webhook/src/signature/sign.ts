@@ -165,6 +165,17 @@ function getCanonicalString(options: SigningOptions, request: SignableRequest) {
     if (decodeSlashesInPath) pathStr = pathStr.replace(/%2F/g, '/')
   }
 
+  console.log(
+    [
+      (request.method || 'POST').toUpperCase(),
+      pathStr,
+      queryStr,
+      canonicalHeaders(options, request) + '\n',
+      signedHeaders(options, request),
+      bodyHash
+    ].join('\n')
+  )
+
   return [
     (request.method || 'POST').toUpperCase(),
     pathStr,

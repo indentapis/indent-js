@@ -13,19 +13,13 @@ let exampleRequest = {
 
 describe('sign', () => {
   test('basic', () =>
-    expect(
-      sign('secret_123', {
-        method: 'POST',
-        host: 'example123.execute-api.us-west-2.amazonaws.com',
-        path: '/webhook/dev',
-        headers: {
-          Host: 'example123.execute-api.us-west-2.amazonaws.com',
-          'X-Indent-Timestamp': '2020-05-02T06:10:30Z'
-        },
-        body: { events: [{ hello: true }] }
-      })
-    ).toEqual(
+    expect(sign('secret_123', exampleRequest)).toEqual(
       '1vb560f0888921e7f6d53fbbaae91dc6f2b6b5839c1e35f3e01407016fd94cc6a4'
+    ))
+
+  test('smoke test', () =>
+    expect(sign('secret1', exampleRequest)).toEqual(
+      sign('secret1', exampleRequest)
     ))
 
   test('different secrets should fail', () =>

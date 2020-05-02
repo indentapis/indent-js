@@ -34,6 +34,13 @@ export function sign(secret: string, request: SignableRequest) {
   let options: SigningOptions = { date, region, service }
   let stringToSign = getStringToSign(options, request)
 
+  console.log({
+    key,
+    options,
+    request,
+    sig: `1v${hmac(key, stringToSign, 'hex')}`
+  })
+
   // Prepend Indent Version 1 signatures with  "1v" for easy identification
   return `1v${hmac(key, stringToSign, 'hex')}`
 }

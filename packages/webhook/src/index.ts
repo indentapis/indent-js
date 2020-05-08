@@ -7,16 +7,8 @@ export type VerifyOptions = {
   body: string | any
 }
 
-export async function sign({
-  alg = 'SHA256',
-  secret = '',
-  payload = '',
-  encoding = 'Hex'
-}): Promise<string> {
-  return CryptoJS.algo.HMAC.create(CryptoJS.algo[alg], secret)
-    .update(payload)
-    .finalize()
-    .toString(CryptoJS.enc[encoding])
+export async function sign({ secret = '', payload = '' }): Promise<string> {
+  return CryptoJS.HmacSHA256(payload, secret).toString(CryptoJS.enc.Hex)
 }
 
 export function getSignaturePayload(opts: {

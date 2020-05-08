@@ -4,10 +4,15 @@ const { verify } = require('@indent/webhook')
 module.exports = async function(req, res) {
   const body = await json(req)
 
+  let signature =
+    req.headers['X-Indent-Signature'] || req.headers['x-indent-signature']
+  let timestamp =
+    req.headers['X-Indent-Timestamp'] || req.headers['x-indent-timestamp']
+
   await verify({
     secret: process.env.INDENT_WEBHOOK_SECRET,
-    timestamp: req.headers['X-Indent-Timestamp'],
-    signature: req.headers['X-Indent-Signature'],
+    timestamp,
+    signature,
     body
   })
 

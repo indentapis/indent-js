@@ -14,11 +14,18 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
   try {
-    console.warn('@indent/webhook.verify(): skipped')
+    let signature =
+      event.headers['X-Indent-Signature'] || event.headers['x-indent-signature']
+    let timestamp =
+      event.headers['X-Indent-Timestamp'] || event.headers['x-indent-timestamp']
+
+    console.warn(
+      `@indent/webhook.verify(signature: ${signature}, timestamp: ${timestamp})`
+    )
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
-      timestamp: event.headers['X-Indent-Timestamp'],
-      signature: event.headers['X-Indent-Signature'],
+      timestamp,
+      signature,
       body
     })
   } catch (err) {

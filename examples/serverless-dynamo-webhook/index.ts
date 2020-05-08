@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-// import { verify } from '@indent/webhook'
+import { verify } from '@indent/webhook'
 import * as types from '@indent/types'
 import * as AWS from 'aws-sdk'
 
@@ -15,12 +15,12 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
   try {
     console.warn('@indent/webhook.verify(): skipped')
-    // await verify({
-    //   secret: process.env.INDENT_SIGNING_SECRET,
-    //   timestamp: event.headers['X-Indent-Timestamp'],
-    //   signature: event.headers['X-Indent-Signature'],
-    //   body
-    // })
+    await verify({
+      secret: process.env.INDENT_WEBHOOK_SECRET,
+      timestamp: event.headers['X-Indent-Timestamp'],
+      signature: event.headers['X-Indent-Signature'],
+      body
+    })
   } catch (err) {
     console.error('@indent/webhook.verify(): failed')
     console.error(err)

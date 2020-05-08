@@ -1,4 +1,4 @@
-import crypto, { HexBase64Latin1Encoding } from 'crypto'
+import * as CryptoJS from 'crypto-js'
 
 export type VerifyOptions = {
   secret: string
@@ -8,18 +8,21 @@ export type VerifyOptions = {
 }
 
 export async function sign({
-  alg = 'sha256',
+  alg = 'SHA256',
   secret = '',
   payload = '',
-  encoding = 'base64' as HexBase64Latin1Encoding
+  encoding = 'Hex'
 }): Promise<string> {
-  return crypto
-    .createHmac(alg, secret)
+  return CryptoJS.algo.HMAC.create(CryptoJS.algo[alg], secret)
     .update(payload)
-    .digest(encoding)
+    .finalize()
+    .toString(CryptoJS.enc[encoding])
 }
 
-function getSignaturePayload(opts: { timestamp: string; body: string | any }) {
+export function getSignaturePayload(opts: {
+  timestamp: string
+  body: string | any
+}) {
   let { timestamp } = opts
   let bodyString = ''
 
@@ -29,7 +32,7 @@ function getSignaturePayload(opts: { timestamp: string; body: string | any }) {
     bodyString = JSON.stringify(opts.body)
   }
 
-  return `v1:${timestamp}:${bodyString}`
+  return `v0:${timestamp}:${bodyString}`
 }
 
 export async function verify(options: VerifyOptions): Promise<boolean> {

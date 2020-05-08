@@ -9,7 +9,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   try {
     console.warn('@indent/webhook.verify(): skipped')
     // await verify({
-    //   secret: process.env.INDENT_SIGNING_SECRET,
+    //   secret: process.env.INDENT_WEBHOOK_SECRET,
     //   timestamp: event.headers['X-Indent-Timestamp'],
     //   signature: event.headers['X-Indent-Signature'],
     //   body
@@ -45,6 +45,8 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
         case 'access/revoke':
           return revokePermission(auditEvent)
         default:
+          console.log('received unknown event')
+          console.log(auditEvent)
           return Promise.resolve()
       }
     })
@@ -52,7 +54,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
   return {
     statusCode: 200,
-    body: 'ok'
+    body: '{}'
   }
 }
 
@@ -92,7 +94,12 @@ async function grantPermission(auditEvent: Indent.Event) {
 
   let result = await okta.addUserToGroup({ user, group })
 
-  console.log({ event, actor, resources, result })
+  console.log({
+    event,
+    actor,
+    resources,
+    success: result.status >= 200 && result.status < 300
+  })
 }
 
 async function revokePermission(auditEvent: Indent.Event) {
@@ -102,7 +109,12 @@ async function revokePermission(auditEvent: Indent.Event) {
 
   let result = await okta.removeUserFromGroup({ user, group })
 
-  console.log({ event, actor, resources, result })
+  console.log({
+    event,
+    actor,
+    resources,
+    success: result.status >= 200 && result.status < 300
+  })
 }
 
 function getOktaIdFromResources(

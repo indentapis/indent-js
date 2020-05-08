@@ -5,9 +5,9 @@ module.exports = async function(req, res) {
   const body = await json(req)
 
   await verify({
-    secret: process.env.INDENT_SIGNING_SECRET,
-    timestamp: req.headers['x-indent-timestamp'],
-    signature: req.headers['x-indent-signature'],
+    secret: process.env.INDENT_WEBHOOK_SECRET,
+    timestamp: req.headers['X-Indent-Timestamp'],
+    signature: req.headers['X-Indent-Signature'],
     body
   })
 

@@ -4,7 +4,7 @@ provider:
   name: aws
   region: us-west-2
   environment:
-    INDENT_SIGNING_SECRET: ${env:INDENT_SIGNING_SECRET}
+    INDENT_WEBHOOK_SECRET: ${env:INDENT_WEBHOOK_SECRET}
     OKTA_TENANT: ${env:OKTA_TENANT}
     OKTA_TOKEN: ${env:OKTA_TOKEN}
 

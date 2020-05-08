@@ -44,7 +44,7 @@ You will need an _Indent Signing Secret_ for your app. You can get it from the s
 The Indent Signing Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
 
 ```bash
-INDENT_SIGNING_SECRET=SUPER_SECRET_FROM_INDENT_UI INDENT_API_SECRET=MY_CUSTOM_SECRET serverless deploy
+INDENT_WEBHOOK_SECRET=SUPER_SECRET_FROM_INDENT_UI INDENT_API_SECRET=MY_CUSTOM_SECRET serverless deploy
 ```
 
 ### Development

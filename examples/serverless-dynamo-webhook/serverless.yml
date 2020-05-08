@@ -19,7 +19,7 @@ provider:
     - name: indent-api-secret
       value: ${env:INDENT_API_SECRET}
   environment:
-    INDENT_SIGNING_SECRET: ${env:INDENT_SIGNING_SECRET}
+    INDENT_WEBHOOK_SECRET: ${env:INDENT_WEBHOOK_SECRET}
 
 functions:
   webhook:

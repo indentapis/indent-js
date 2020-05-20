@@ -19,7 +19,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
     let timestamp =
       event.headers['X-Indent-Timestamp'] || event.headers['x-indent-timestamp']
 
-    console.warn(
+    console.log(
       `@indent/webhook.verify(signature: ${signature}, timestamp: ${timestamp})`
     )
     await verify({

@@ -5,6 +5,7 @@ export type VerifyOptions = {
   timestamp: string
   signature: string
   body: string | any
+  throwError?: boolean
 }
 
 export async function sign({ secret = '', payload = '' }): Promise<string> {
@@ -44,12 +45,18 @@ export async function verify(options: VerifyOptions): Promise<boolean> {
     throw new Error('@indent/webhook: verify(): missing options.body')
   }
 
-  const { secret, body, signature, timestamp } = options
+  const { secret, body, signature, timestamp, throwError } = options
   const payload = getSignaturePayload({ body, timestamp })
-
   const generatedSignature = await sign({ secret, payload })
+  const isValidSignature = generatedSignature === signature
 
-  return generatedSignature === signature
+  if (typeof throwError === 'undefined' || throwError) {
+    if (!isValidSignature) {
+      throw new Error('@indent/webhook: verify(): invalid signature')
+    }
+  }
+
+  return isValidSignature
 }
 
 export default { sign, verify }

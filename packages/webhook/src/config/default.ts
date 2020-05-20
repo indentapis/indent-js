@@ -22,8 +22,10 @@ const DEFAULT_TEST_CONFIG: WebhookTestConfig = {
             id: 'TL0Q0MJR7/U9G03MX',
             altIds: ['mary-manager']
           },
-          labels: {
-            'indent.com/expires': '2020-04-07T19:23:42.335Z'
+          meta: {
+            labels: {
+              expires: '2020-04-07T19:23:42.335Z'
+            }
           },
           reason: 'debug jira ticket APP-123',
           resources: [

@@ -35,6 +35,10 @@ export type Event = {
   sessionId?: string
   externalId?: string
   resources?: Resource[]
+  meta?: EventMeta
+}
+
+export type EventMeta = {
   labels?: EventLabels
 }
 

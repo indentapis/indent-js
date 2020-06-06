@@ -2,10 +2,11 @@ import * as CryptoJS from 'crypto-js'
 
 export type VerifyOptions = {
   secret: string
-  timestamp: string
-  signature: string
   body: string | any
   throwError?: boolean
+  headers?: { [name: string]: string }
+  timestamp?: string
+  signature?: string
 }
 
 export async function sign({ secret = '', payload = '' }): Promise<string> {
@@ -29,6 +30,18 @@ export function getSignaturePayload(opts: {
 }
 
 export async function verify(options: VerifyOptions): Promise<boolean> {
+  if (options.headers) {
+    let ts =
+      options.headers['X-Indent-Timestamp'] ||
+      options.headers['x-indent-timestamp']
+    let sig =
+      options.headers['X-Indent-Signature'] ||
+      options.headers['x-indent-signature']
+
+    options.timestamp = ts
+    options.signature = sig
+  }
+
   if (!options.secret) {
     throw new Error('@indent/webhook: verify(): missing options.secret')
   }

@@ -1,4 +1,4 @@
-# Serverless IAM Webhook
+# Serverless DynamoDB Webhook
 
 ## How To Use
 
@@ -11,8 +11,8 @@
 Download the example:
 
 ```bash
-curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/serverless-iam-webhook
-cd serverless-iam-webhook
+curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/serverless-dynamo-webhook
+cd serverless-dynamo-webhook
 ```
 
 Install it and run:

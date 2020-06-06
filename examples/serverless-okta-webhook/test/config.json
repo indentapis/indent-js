@@ -7,7 +7,6 @@
           "actor": {
             "kind": "slack/user",
             "id": "TL0Q0MJR7/U9G03MX",
-            "altIds": ["mary-manager"],
             "labels": {
               "oktaId": "00uqlnv5oon8tTdlX356"
             }

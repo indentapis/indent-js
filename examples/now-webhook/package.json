@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "micro": "latest",
+    "@indent/types": "latest",
     "@indent/webhook": "latest"
   },
   "devDependencies": {

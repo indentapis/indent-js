@@ -4,15 +4,9 @@ const { verify } = require('@indent/webhook')
 module.exports = async function(req, res) {
   const body = await json(req)
 
-  let signature =
-    req.headers['X-Indent-Signature'] || req.headers['x-indent-signature']
-  let timestamp =
-    req.headers['X-Indent-Timestamp'] || req.headers['x-indent-timestamp']
-
   await verify({
     secret: process.env.INDENT_WEBHOOK_SECRET,
-    timestamp,
-    signature,
+    headers: req.headers,
     body
   })
 
@@ -37,19 +31,11 @@ module.exports = async function(req, res) {
 }
 
 async function grantPermission({ event, actor, resources }) {
-  const { id } = actor
-
-  console.log({ event, actor, resources })
-
-  // - Lookup user ID from actor id (e.g. Slack user id)
+  // - Grab labels from actor (e.g. AWS ARN)
   // - Grant them permission(s)
 }
 
 async function revokePermission({ event, actor, resources }) {
-  const { id } = actor
-
-  console.log({ event, actor, resources })
-
-  // - Lookup user ID from actor id (e.g. Slack user id)
+  // - Grab labels from actor (e.g. AWS ARN)
   // - Revoke their permission(s)
 }

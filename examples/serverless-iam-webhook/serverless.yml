@@ -9,9 +9,6 @@ provider:
         - iam:AddUserToGroup
         - iam:RemoveUserFromGroup
       Resource: '*'
-  apiKeys:
-    - name: indent-api-secret
-      value: ${env:INDENT_API_SECRET}
   environment:
     INDENT_WEBHOOK_SECRET: ${env:INDENT_WEBHOOK_SECRET}
 

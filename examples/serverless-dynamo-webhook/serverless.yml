@@ -1,5 +1,8 @@
 service: indent-dynamo-webhook
 
+custom:
+  tableName: rbac_bindings
+
 provider:
   name: aws
   region: us-west-2
@@ -54,6 +57,8 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: role
             KeyType: HASH
           - AttributeName: tenantId
             KeyType: HASH

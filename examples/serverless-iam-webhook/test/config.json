@@ -7,7 +7,9 @@
           "actor": {
             "kind": "slack/user",
             "id": "TL0Q0MJR7/U9G03MX",
-            "altIds": ["mary-manager"]
+            "labels": {
+              "arn": "mary-manager"
+            }
           },
           "meta": {
             "labels": {
@@ -19,14 +21,13 @@
             {
               "kind": "slack/user",
               "id": "TL0Q0MJR7/U822olY",
-              "altIds": ["dennis-developer"],
               "labels": {
                 "arn": "dennis-developer",
                 "cognitoId": "d697483b81d0b72a37bf"
               }
             },
             {
-              "kind": "aws:iam:group",
+              "kind": "aws:group",
               "id": "s3-read"
             }
           ]
@@ -40,22 +41,20 @@
           "event": "access/revoke",
           "actor": {
             "kind": "slack/user",
-            "id": "TL0Q0MJR7/U9G03MX",
-            "altIds": ["mary-manager"]
+            "id": "TL0Q0MJR7/U9G03MX"
           },
           "reason": "access grant expired",
           "resources": [
             {
               "kind": "slack/user",
               "id": "TL0Q0MJR7/U822olY",
-              "altIds": ["dennis-developer"],
               "labels": {
                 "arn": "dennis-developer",
                 "cognitoId": "d697483b81d0b72a37bf"
               }
             },
             {
-              "kind": "aws:iam:group",
+              "kind": "aws:group",
               "id": "s3-read"
             }
           ]

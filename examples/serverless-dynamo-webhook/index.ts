@@ -14,18 +14,9 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
   try {
-    let signature =
-      event.headers['X-Indent-Signature'] || event.headers['x-indent-signature']
-    let timestamp =
-      event.headers['X-Indent-Timestamp'] || event.headers['x-indent-timestamp']
-
-    console.log(
-      `@indent/webhook.verify(signature: ${signature}, timestamp: ${timestamp})`
-    )
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
-      timestamp,
-      signature,
+      headers: req.headers,
       body
     })
   } catch (err) {
@@ -77,7 +68,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
   return {
     statusCode: 200,
-    body: 'ok'
+    body: '{}'
   }
 }
 
@@ -100,7 +91,7 @@ async function grantPermission(
   const userId = getCognitoIdFromResources(resources, 'user')
   const tenantId = getCognitoIdFromResources(resources, 'tenant')
 
-  let result = dynamo
+  let result = await dynamo
     .putItem({
       TableName: 'rbac_bindings',
       Item: {
@@ -114,7 +105,7 @@ async function grantPermission(
   console.log({ event, actor, resources, result })
   return {
     statusCode: 200,
-    body: 'ok'
+    body: '{}'
   }
 }
 
@@ -125,7 +116,7 @@ async function revokePermission(
   const userId = getCognitoIdFromResources(resources, 'user')
   const tenantId = getCognitoIdFromResources(resources, 'tenant')
 
-  let result = dynamo
+  let result = await dynamo
     .deleteItem({
       TableName: 'rbac_bindings',
       Key: {
@@ -138,7 +129,7 @@ async function revokePermission(
   console.log({ event, actor, resources, result })
   return {
     statusCode: 200,
-    body: 'ok'
+    body: '{}'
   }
 }
 

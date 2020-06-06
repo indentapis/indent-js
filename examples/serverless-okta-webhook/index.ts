@@ -7,18 +7,9 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   const body = JSON.parse(event.body)
 
   try {
-    let signature =
-      event.headers['X-Indent-Signature'] || event.headers['x-indent-signature']
-    let timestamp =
-      event.headers['X-Indent-Timestamp'] || event.headers['x-indent-timestamp']
-
-    console.log(
-      `@indent/webhook.verify(signature: ${signature}, timestamp: ${timestamp})`
-    )
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
-      timestamp,
-      signature,
+      headers: req.headers,
       body
     })
   } catch (err) {
@@ -33,7 +24,6 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   const { events } = body
 
   console.log(`@indent/webhook: received ${events.length} events`)
-
   console.log(JSON.stringify(events, null, 2))
 
   await Promise.all(

@@ -1,7 +1,7 @@
 {
   "name": "@indent/serverless-dynamo-webhook",
   "version": "0.0.0",
-  "description": "A Node.js starter for the Serverless Framework with Indent.",
+  "description": "A Node.js starter for the Serverless Framework with Indent and DynamoDB.",
   "main": "index.js",
   "scripts": {
     "dev": "serverless offline",

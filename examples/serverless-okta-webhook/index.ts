@@ -9,7 +9,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   try {
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
-      headers: req.headers,
+      headers: event.headers,
       body
     })
   } catch (err) {

@@ -1,4 +1,4 @@
-service: indent-iam-webhook
+service: indent-aws-iam-webhook
 
 provider:
   name: aws
@@ -35,9 +35,9 @@ resources:
     s3Read:
       Type: AWS::IAM::Group
       Properties:
-        GroupName: s3-read
+        GroupName: s3-read-dev
         Policies:
-          - PolicyName: s3-get-any-object
+          - PolicyName: s3-dev-get-any-object
             PolicyDocument:
               Version: '2012-10-17'
               Statement:

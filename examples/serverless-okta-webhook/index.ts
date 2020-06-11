@@ -87,7 +87,7 @@ const okta = { addUserToGroup, removeUserFromGroup }
 async function grantPermission(auditEvent: Indent.Event) {
   const { event, actor, resources } = auditEvent
   const user = getOktaIdFromResources(resources, 'user')
-  const group = getOktaIdFromResources(resources, 'group')
+  const group = getOktaIdFromResources(resources, 'app')
 
   let result = await okta.addUserToGroup({ user, group })
 
@@ -102,7 +102,7 @@ async function grantPermission(auditEvent: Indent.Event) {
 async function revokePermission(auditEvent: Indent.Event) {
   const { event, actor, resources } = auditEvent
   const user = getOktaIdFromResources(resources, 'user')
-  const group = getOktaIdFromResources(resources, 'group')
+  const group = getOktaIdFromResources(resources, 'app')
 
   let result = await okta.removeUserFromGroup({ user, group })
 

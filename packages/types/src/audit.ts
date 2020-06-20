@@ -1,21 +1,9 @@
-export type Actor = {
-  id?: string // The IRN for the resource
-  kind?: string // The IRN for the kind of resource
-  email?: string // The email for the Actor
-  altIds?: string[] // The IRNs for alternate identifiers (e.g. email)
-  displayName?: string // The display name of the resource
-  labels?: ActorLabels // The labels for the Actor
-}
-
-export type ActorLabels = {
-  [key: string]: string
-}
-
 export type Resource = {
-  id?: string // The IRN for the resource
-  kind?: string // The IRN for the kind of resource
-  altIds?: string[] // The IRNs for alternate identifiers (e.g. email)
-  displayName?: string // The display name of the resource
+  id?: string // The identifier for the resource
+  kind?: string // The kind of the resource
+  email?: string // The email address for the resource
+  altIds?: string[] // The alternate identifiers for the resource
+  displayName?: string // The display name for the resource
   labels?: ResourceLabels // The labels for the Resource
 }
 
@@ -29,7 +17,7 @@ export type Event = {
 
   // Optional
   id?: string
-  actor?: Actor
+  actor?: Resource
   reason?: string
   timestamp?: string
   sessionId?: string

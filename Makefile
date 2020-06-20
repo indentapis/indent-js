@@ -17,10 +17,10 @@ clean-versions:
 patch: clean-versions
 	yarn bump-patch
 
-minor:
+minor: clean-versions
 	yarn bump-minor
 
-major:
+major: clean-versions
 	yarn bump-major
 
 build:

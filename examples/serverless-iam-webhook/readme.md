@@ -39,9 +39,9 @@ This is a simple example showing how to use [Serverless](https://serverless.com)
 
 ### Configuration
 
-You will need an _Indent Signing Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Signing Secret**. This will allow you to verify request payloads from Indent.
+You will need an _Indent Webhook Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Signing Secret**. This will allow you to verify request payloads from Indent.
 
-The Indent Signing Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
+The Indent Webhook Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
 
 ```bash
 INDENT_WEBHOOK_SECRET=SUPER_SECRET_FROM_INDENT serverless deploy

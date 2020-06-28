@@ -8,7 +8,7 @@
             "kind": "slack/user",
             "id": "TL0Q0MJR7/U9G03MX",
             "labels": {
-              "slackId": "123"
+              "oktaId": "00uqlnv5oon8tTdlX356"
             }
           },
           "reason": "good reason",
@@ -17,15 +17,12 @@
               "kind": "slack/user",
               "id": "TL0Q0MJR7/U822olY",
               "labels": {
-                "slackId": "123"
+                "oktaId": "00uqlnv5oon8tTdlX356"
               }
             },
             {
-              "kind": "slack/channel",
-              "id": "123",
-              "labels": {
-                "slackId": 
-              }
+              "kind": "okta:group",
+              "id": "00g3rrcr73qNIVuwd357"
             }
           ]
         }

@@ -1,18 +1,18 @@
-# Serverless Slack Webhook
+# Terraform AWS + Okta Webhook
 
 ## How To Use
 
 ### Requirements
 
-- [Serverless](https://serverless.com/framework/docs/getting-started/)
+- [Terraform](https://terraform.io)
 
 ### Download
 
 Download the example:
 
 ```bash
-curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/serverless-slack-webhook
-cd serverless-slack-webhook
+curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/terraform-aws-okta-webhook
+cd terraform-aws-okta-webhook
 ```
 
 Install it and run:
@@ -31,11 +31,11 @@ yarn
 yarn dev
 ```
 
-Deploy it to the cloud with [Serverless](https://serverless.com) ([Documentation](https://serverless.com/framework/docs/getting-started/)).
+Deploy it to the cloud with [Terraform](https://terraform.io) ([Documentation](https://terraform.io/docs/)) and [AWS Lambda](https://aws.amazon.com/lambda/).
 
 ## About Example
 
-This is a simple example showing how to use [Serverless](https://serverless.com) to deploy a function that can add or remove users from Slack channels programatically.
+This is a simple example showing how to use [Terraform](https://terraform.io) to deploy a function that can add or remove users from Okta Groups programatically.
 
 ### Configuration
 

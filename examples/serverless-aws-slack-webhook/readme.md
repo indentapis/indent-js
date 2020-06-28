@@ -1,4 +1,4 @@
-# Serverless AWS IAM Webhook
+# Serverless Slack Webhook
 
 ## How To Use
 
@@ -11,8 +11,8 @@
 Download the example:
 
 ```bash
-curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/serverless-iam-webhook
-cd serverless-iam-webhook
+curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --strip=2 indent-js-master/examples/serverless-slack-webhook
+cd serverless-slack-webhook
 ```
 
 Install it and run:
@@ -35,16 +35,16 @@ Deploy it to the cloud with [Serverless](https://serverless.com) ([Documentation
 
 ## About Example
 
-This is a simple example showing how to use [Serverless](https://serverless.com) to deploy a function that can add or remove users from AWS IAM Groups programatically.
+This is a simple example showing how to use [Serverless](https://serverless.com) to deploy a function that can add or remove users from Slack channels programatically.
 
 ### Configuration
 
-You will need an _Indent Signing Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Signing Secret**. This will allow you to verify request payloads from Indent.
+You will need an _Indent Webhook Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Signing Secret**. This will allow you to verify request payloads from Indent.
 
-The Indent Signing Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
+The Indent Webhook Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
 
 ```bash
-INDENT_WEBHOOK_SECRET=SUPER_SECRET_FROM_INDENT serverless deploy
+INDENT_WEBHOOK_SECRET=SUPER_SECRET_FROM_INDENT_UI INDENT_API_SECRET=MY_CUSTOM_SECRET serverless deploy
 ```
 
 ### Development
@@ -62,20 +62,6 @@ Built at: 04/16/2020 10:18:41 AM
 index.js.map  1.13 MiB   index  [emitted] [dev]  index
 Entrypoint index = index.js index.js.map
 [./index.ts] 2.88 KiB {index} [built]
-[./node_modules/aws-sdk/clients/accessanalyzer.js] 618 bytes {index} [built]
-[./node_modules/aws-sdk/clients/acm.js] 618 bytes {index} [built]
-[./node_modules/aws-sdk/clients/acmpca.js] 645 bytes {index} [built]
-[./node_modules/aws-sdk/clients/alexaforbusiness.js] 632 bytes {index} [built]
-[./node_modules/aws-sdk/clients/all.js] 8.76 KiB {index} [built]
-[./node_modules/aws-sdk/clients/amplify.js] 569 bytes {index} [built]
-[./node_modules/aws-sdk/clients/apigateway.js] 629 bytes {index} [built]
-[./node_modules/aws-sdk/clients/apigatewaymanagementapi.js] 681 bytes {index} [built]
-[./node_modules/aws-sdk/clients/apigatewayv2.js] 604 bytes {index} [built]
-[./node_modules/aws-sdk/clients/appconfig.js] 583 bytes {index} [built]
-[./node_modules/aws-sdk/clients/applicationautoscaling.js] 676 bytes {index} [built]
-[./node_modules/aws-sdk/lib/aws.js] 159 bytes {index} [built]
-[./node_modules/aws-sdk/lib/core.js] 2.43 KiB {index} [built]
-[./node_modules/aws-sdk/lib/node_loader.js] 3.81 KiB {index} [built]
     + 874 hidden modules
 Serverless: Watching for changes...
 offline: Starting Offline: dev/us-west-2.

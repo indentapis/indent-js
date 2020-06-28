@@ -3,10 +3,10 @@ import * as CryptoJS from 'crypto-js'
 export type VerifyOptions = {
   secret: string
   body: string | any
-  throwError?: boolean
-  headers?: { [name: string]: string }
+  headers?: { [name: string]: string | string[] }
   timestamp?: string
   signature?: string
+  throwError?: boolean
 }
 
 export async function sign({ secret = '', payload = '' }): Promise<string> {
@@ -38,8 +38,8 @@ export async function verify(options: VerifyOptions): Promise<boolean> {
       options.headers['X-Indent-Signature'] ||
       options.headers['x-indent-signature']
 
-    options.timestamp = ts
-    options.signature = sig
+    options.timestamp = String(ts)
+    options.signature = String(sig)
   }
 
   if (!options.secret) {

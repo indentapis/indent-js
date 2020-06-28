@@ -12,6 +12,8 @@ examples/**/lib
 examples/**/dist
 examples/**/.webpack
 examples/**/yarn.lock
+examples/**/.env.json
+examples/**/.env.yaml
 examples/**/.terraform
 examples/**/.serverless
 examples/**/node_modules

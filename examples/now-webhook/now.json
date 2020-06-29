@@ -1,6 +1,0 @@
-{
-  "name": "indent-access-request-webhook",
-  "env": {
-    "INDENT_WEBHOOK_SECRET": "@INDENT_WEBHOOK_SECRET"
-  }
-}

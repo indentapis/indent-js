@@ -39,7 +39,7 @@ This is a simple example showing how to use [Terraform](https://terraform.io) to
 
 ### Configuration
 
-You will need an _Indent Webhook Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Signing Secret**. This will allow you to verify request payloads from Indent.
+You will need an _Indent Webhook Secret_ for your app. You can get it from the settings of your app in **Configuration for App**. Then, copy the string labeled **Webhook Secret**. This will allow you to verify request payloads from Indent.
 
 The Indent Webhook Secret should then be set as an environment variable. With API Gateway, you likely also need an API secret for Indent to send when making requests to your function.
 

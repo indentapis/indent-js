@@ -11,12 +11,10 @@
     "url": "https://github.com/indentapis/indent-js.git"
   },
   "dependencies": {
-    "micro": "latest",
     "@indent/types": "latest",
-    "@indent/webhook": "latest"
-  },
-  "devDependencies": {
-    "now": "^17.0.4"
+    "@indent/webhook": "latest",
+    "@types/express": "^4.17.6",
+    "micro": "latest"
   },
   "scripts": {
     "start": "micro"

@@ -4,17 +4,11 @@ import * as Indent from '@indent/types'
 import axios from 'axios'
 
 export const handle: APIGatewayProxyHandler = async function handle(event) {
-  const body = JSON.parse(event.body)
-
-  console.log({
-    headers: event.headers
-  })
-
   try {
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
       headers: event.headers,
-      body
+      body: event.body
     })
   } catch (err) {
     console.error('@indent/webhook.verify(): failed')
@@ -25,6 +19,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
     }
   }
 
+  const body = JSON.parse(event.body)
   const { events } = body
 
   console.log(`@indent/webhook: received ${events.length} events`)
@@ -59,7 +54,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
   }
 }
 
-const OKTA_TENANT = process.env.OKTA_TENANT || 'indent.okta.com'
+const OKTA_TENANT = process.env.OKTA_TENANT
 const OKTA_TOKEN = process.env.OKTA_TOKEN
 
 async function addUserToGroup({ user, group }) {

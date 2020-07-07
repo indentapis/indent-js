@@ -3,3 +3,7 @@ provider "aws" {
   region      = "${var.aws_region}"
   max_retries = 1
 }
+
+provider "random" {
+  version = "~> 2.2"
+}

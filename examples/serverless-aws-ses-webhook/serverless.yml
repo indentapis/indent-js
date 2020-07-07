@@ -1,12 +1,18 @@
-service: indent-okta-webhook
+service: indent-aws-ses-webhook
 
 provider:
   name: aws
   region: us-west-2
   environment:
     INDENT_WEBHOOK_SECRET: ${env:INDENT_WEBHOOK_SECRET}
-    OKTA_TENANT: ${env:OKTA_TENANT}
-    OKTA_TOKEN: ${env:OKTA_TOKEN}
+    INDENT_SPACE_NAME: ${env:INDENT_SPACE_NAME}
+    EMAIL_FROM_ADDR: ${env:EMAIL_FROM_ADDR}
+    EMAIL_TO_ADDR: ${env:EMAIL_TO_ADDR}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+      Resource: '*'
 
 functions:
   webhook:

@@ -6,7 +6,7 @@ data "archive_file" "function_archive" {
 
 resource "aws_lambda_layer_version" "deps" {
   compatible_runtimes = ["nodejs12.x"]
-  layer_name          = "dependency_layer"
+  layer_name          = "${local.name}-dependency_layer"
   filename            = "${path.module}/../dist/layers/layers.zip"
   source_code_hash    = "${filesha256("${path.module}/../dist/layers/layers.zip")}"
 }

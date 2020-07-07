@@ -1,6 +1,6 @@
   
 locals {
-  name          = "indent-okta-webhook"
+  name          = "indent-okta-webhook-${random_string.suffix.result}"
   lambda_memory = 128
 
   tags = {
@@ -8,4 +8,10 @@ locals {
     GitRepo    = "https://github.com/indentapis/indent-js"
     ProvidedBy = "Indent"
   }
+}
+
+resource "random_string" "suffix" {
+  length  = 4
+  upper   = false
+  special = false
 }

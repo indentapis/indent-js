@@ -25,28 +25,32 @@ exports['indent-storage-webhook'] = async function handle(req, res) {
   console.log(`@indent/webhook: received ${events.length} events`)
   console.log(JSON.stringify(events, null, 2))
 
-  await Promise.all(
-    events.map(auditEvent => {
-      let { actor, event, resources } = auditEvent
+  try {
+    await Promise.all(
+      events.map(auditEvent => {
+        let { actor, event, resources } = auditEvent
 
-      console.log(
-        `@indent/webhook: ${event} { actor: ${
-          actor.id
-        }, resources: ${JSON.stringify(resources.map(r => r.id))} }`
-      )
+        console.log(
+          `@indent/webhook: ${event} { actor: ${
+            actor.id
+          }, resources: ${JSON.stringify(resources.map(r => r.id))} }`
+        )
 
-      switch (event) {
-        case 'access/grant':
-          return grantPermission(auditEvent)
-        case 'access/revoke':
-          return revokePermission(auditEvent)
-        default:
-          console.log('received unknown event')
-          console.log(auditEvent)
-          return Promise.resolve()
-      }
-    })
-  )
+        switch (event) {
+          case 'access/grant':
+            return grantPermission(auditEvent)
+          case 'access/revoke':
+            return revokePermission(auditEvent)
+          default:
+            console.log('received unknown event')
+            console.log(auditEvent)
+            return Promise.resolve()
+        }
+      })
+    )
+  } catch (err) {
+    console.error(err)
+  }
 
   return res.status(200).json({})
 }
@@ -73,7 +77,7 @@ async function addBucketMember({ user, bucketName }) {
     })
   }
 
-  await bucket.iam.setPolicy(policy)
+  return await bucket.iam.setPolicy(policy)
 }
 
 async function removeBucketMember({ user, bucketName }) {
@@ -96,7 +100,7 @@ async function removeBucketMember({ user, bucketName }) {
     })
     .filter(Boolean)
 
-  await bucket.iam.setPolicy(policy)
+  return await bucket.iam.setPolicy(policy)
 }
 
 const gcs = { addBucketMember, removeBucketMember }

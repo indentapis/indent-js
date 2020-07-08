@@ -17,7 +17,7 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
     await verify({
       secret: process.env.INDENT_WEBHOOK_SECRET,
       headers: event.headers,
-      body
+      body: event.body
     })
   } catch (err) {
     console.error('@indent/webhook.verify(): failed')

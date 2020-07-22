@@ -1,5 +1,5 @@
-import unfetch from 'unfetch'
+import isofetch from 'isomorphic-fetch'
 
-const fetch = unfetch.bind(typeof window === 'undefined' ? null : window)
+const fetch = isofetch.bind(typeof window === 'undefined' ? null : window)
 
 export { fetch }

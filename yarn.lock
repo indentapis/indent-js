@@ -288,12 +288,13 @@ __metadata:
   resolution: "@indent/audit@workspace:packages/audit"
   dependencies:
     "@indent/types": "workspace:packages/types"
+    "@types/isomorphic-fetch": ^0.0.35
     "@types/jest": ^25.1.1
     "@types/node": ^13.9.2
     "@types/node-fetch": ^2.5.4
     "@types/rollup-plugin-commonjs": 9.3.1
     "@types/rollup-plugin-node-resolve": 4.1.0
-    isomorphic-unfetch: ^3.0.0
+    isomorphic-fetch: ^2.2.1
     jest: ^25.1.0
     npm-run-all: ^4.1.2
     prettier: ^1.17.0
@@ -309,7 +310,6 @@ __metadata:
     tslib: ^1.11.0
     tslint: ^5.16.0
     typescript: ^3.4.5
-    unfetch: ^4.1.0
   languageName: unknown
   linkType: soft
 
@@ -382,7 +382,6 @@ __metadata:
     typedoc: ^0.14.2
     typescript: ^3.4.5
     typescript-tslint-plugin: ^0.3.1
-    unfetch: ^4.1.0
   languageName: unknown
   linkType: soft
 
@@ -976,6 +975,13 @@ __metadata:
   version: 9.12.3
   resolution: "@types/highlight.js@npm:9.12.3"
   checksum: 2/029f5a05abd207bdc7b07ba6ce2f4d476ba66e67c19b3d8454f9b8cb299d1923d31d7d0068abc10f4a26e28907e792299633727a5f7e59605eaa8486585523a6
+  languageName: node
+  linkType: hard
+
+"@types/isomorphic-fetch@npm:^0.0.35":
+  version: 0.0.35
+  resolution: "@types/isomorphic-fetch@npm:0.0.35"
+  checksum: 2/a9806f9618e860b7b8b37b8b283ca67ef81bc67fb6110c87d06684fe256d81b2e4ef395852c6b7804014c7c7023fddf42112a7868bf71a5d13d84d44e67b08ed
   languageName: node
   linkType: hard
 
@@ -2417,6 +2423,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"encoding@npm:^0.1.11":
+  version: 0.1.13
+  resolution: "encoding@npm:0.1.13"
+  dependencies:
+    iconv-lite: ^0.6.2
+  checksum: 2/282d5696a4916383b0f71a87375505e33ef0be0c3a30939fb559a878b691873d48acc61ee6dcbfacf3e68404ab4462e081bcfd0aa3c9a3f1fabb900306aad77d
+  languageName: node
+  linkType: hard
+
 "end-of-stream@npm:^1.1.0":
   version: 1.4.4
   resolution: "end-of-stream@npm:1.4.4"
@@ -3259,6 +3274,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iconv-lite@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "iconv-lite@npm:0.6.2"
+  dependencies:
+    safer-buffer: ">= 2.1.2 < 3.0.0"
+  checksum: 2/0785670120f57b5912c6a4391d6a69914906746d259b59de884dc6d324a52a0abde38d5804f67370192fec6878d01e7306de525568abcea70eb41c2bceb9f547
+  languageName: node
+  linkType: hard
+
 "import-local@npm:^3.0.2":
   version: 3.0.2
   resolution: "import-local@npm:3.0.2"
@@ -3516,7 +3540,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-stream@npm:^1.1.0":
+"is-stream@npm:^1.0.1, is-stream@npm:^1.1.0":
   version: 1.1.0
   resolution: "is-stream@npm:1.1.0"
   checksum: 2/39843ee9ff68ebda05237199f18831eb6e0e28db7799ee9ddaac5573b0681f18b4dc427afdb7b7ad906db545e4648999c42a1810b277acc8451593ff59da00fa
@@ -3597,13 +3621,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isomorphic-unfetch@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "isomorphic-unfetch@npm:3.0.0"
+"isomorphic-fetch@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "isomorphic-fetch@npm:2.2.1"
   dependencies:
-    node-fetch: ^2.2.0
-    unfetch: ^4.0.0
-  checksum: 2/c095a48045076159e4c20457f5df49720d146f44da25da8dd127a0c51a6cd0ac8100bd6a7021cab42755261987f1f1dd8f47a7b90682a9465c2c1241f41e4103
+    node-fetch: ^1.0.1
+    whatwg-fetch: ">=0.10.0"
+  checksum: 2/a4174e332ae98fc93269162f1d8a3ee1f7255257d4eaeea5145d4068f64ac2dbff7e7f681889097238e1e009f7a74ba1a23ffd8ed967402777a32cca96204508
   languageName: node
   linkType: hard
 
@@ -5229,7 +5253,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.2.0, node-fetch@npm:^2.6.0":
+"node-fetch@npm:^1.0.1":
+  version: 1.7.3
+  resolution: "node-fetch@npm:1.7.3"
+  dependencies:
+    encoding: ^0.1.11
+    is-stream: ^1.0.1
+  checksum: 2/d04afb2e328ffb974a5ac4800fe5714d7419243d72f089a6a2383d3b93368c61ae88954a4866c476c0d7f95d7af414c1b9a885e051971061efe4054d526e23ed
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.6.0":
   version: 2.6.0
   resolution: "node-fetch@npm:2.6.0"
   checksum: 2/dd9f586a9f7ddb7dd94d2aba9cb693d32f5001e9850098512fbc8a4cbdd56838afa08ed0a6725b9fce9b01ec12b713e622cbfc16d92762d8b937b238330a632a
@@ -6371,7 +6405,7 @@ resolve@^1.17.0:
   languageName: node
   linkType: hard
 
-"safer-buffer@npm:>= 2.1.2 < 3, safer-buffer@npm:^2.0.2, safer-buffer@npm:^2.1.0, safer-buffer@npm:~2.1.0":
+"safer-buffer@npm:>= 2.1.2 < 3, safer-buffer@npm:>= 2.1.2 < 3.0.0, safer-buffer@npm:^2.0.2, safer-buffer@npm:^2.1.0, safer-buffer@npm:~2.1.0":
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 2/549ba83f5b314b59898efe3422120ce1ca7987a6eae5925a5fa5db930dc414d4a9dde0a5594f89638cd6ea60b6840ea961872908933ac2428d1726489db46fa5
@@ -7433,13 +7467,6 @@ typescript@^3.4.5:
   languageName: node
   linkType: hard
 
-"unfetch@npm:^4.0.0, unfetch@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "unfetch@npm:4.1.0"
-  checksum: 2/22b729e6e6db8ce58fb64f5063bd72f91fb5badd34f6ae8aaa489bec11ecb189b6654105e1cdfeaecf25841ceb83b4be1b9b4c7ed529287ad2d79e9620d03033
-  languageName: node
-  linkType: hard
-
 "union-value@npm:^1.0.0":
   version: 1.0.1
   resolution: "union-value@npm:1.0.1"
@@ -7689,6 +7716,13 @@ typescript@^3.4.5:
   dependencies:
     iconv-lite: 0.4.24
   checksum: 2/44e4276ad2c770d1eb8c5a49294b863c581ef4bc78a10ac6a73a7eba00b377bc53ae0501d7ffce29a2c051b6af5ebbbd135f1da7d8eb98097af2cf12f7b2c984
+  languageName: node
+  linkType: hard
+
+"whatwg-fetch@npm:>=0.10.0":
+  version: 3.2.0
+  resolution: "whatwg-fetch@npm:3.2.0"
+  checksum: 2/17ecf86ef5bca61031376dda7a71d73686b8e726d4e01515d586dfa165d9fed743c01759bb399b918c9ee9377f18d966ac4c007c28599e0f4fc3d15e1e273b7f
   languageName: node
   linkType: hard
 

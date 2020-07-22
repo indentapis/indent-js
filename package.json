@@ -1,6 +1,6 @@
 {
   "name": "@indentapis/indent-js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -29,8 +29,7 @@
     "typescript-tslint-plugin": "^0.3.1"
   },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.0.0-rc.17",
-    "unfetch": "^4.1.0"
+    "@yarnpkg/pnpify": "^2.0.0-rc.17"
   },
   "scripts": {
     "build": "yarn workspaces foreach -pt --verbose run build",

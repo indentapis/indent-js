@@ -1,6 +1,6 @@
 {
   "name": "@indent/audit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -28,11 +28,11 @@
   },
   "dependencies": {
     "@indent/types": "workspace:packages/types",
-    "isomorphic-unfetch": "^3.0.0",
-    "tslib": "^1.11.0",
-    "unfetch": "^4.1.0"
+    "isomorphic-fetch": "^2.2.1",
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
     "@types/jest": "^25.1.1",
     "@types/node": "^13.9.2",
     "@types/node-fetch": "^2.5.4",

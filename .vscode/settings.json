@@ -8,5 +8,12 @@
     "**/coverage": true,
     "**/dist": true,
     "**/esm": true
-  }
+  },
+  "azureFunctions.deploySubpath": "examples/azure-okta-webhook",
+  "azureFunctions.postDeployTask": "npm install",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~3",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.projectSubpath": "examples/azure-okta-webhook",
+  "azureFunctions.preDeployTask": "npm prune"
 }

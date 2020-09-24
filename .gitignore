@@ -10,6 +10,7 @@ packages/**/coverage
 
 examples/**/lib
 examples/**/dist
+examples/**/.env
 examples/**/.webpack
 examples/**/yarn.lock
 examples/**/.env.json
@@ -19,6 +20,8 @@ examples/**/.terraform
 examples/**/*.tfstate.*
 examples/**/.serverless
 examples/**/node_modules
+examples/**/*.private.json
 examples/**/package-lock.json
+examples/**/local.settings.json
 examples/**/terraform/config/*.tfvars
 !examples/**/terraform/config/example.tfvars

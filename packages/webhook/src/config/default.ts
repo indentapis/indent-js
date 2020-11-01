@@ -1,9 +1,15 @@
 import * as types from '@indent/types'
 
 export type WebhookTestConfig = {
-  apiSecret?: string
-  verifySecret?: string
+  hook: IndentWebhook
   entries: WebhookTestConfigEntry[]
+}
+
+export type IndentWebhook = {
+  url: string
+  secret: string
+  method?: string
+  headers?: { [key: string]: string }
 }
 
 export type WebhookTestConfigEntry = {
@@ -12,6 +18,13 @@ export type WebhookTestConfigEntry = {
 }
 
 const DEFAULT_TEST_CONFIG: WebhookTestConfig = {
+  hook: {
+    url: 'http://localhost:3000',
+    secret: 'wkeXample',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  },
   entries: [
     {
       events: [

@@ -3,7 +3,7 @@ import DEFAULT_CONFIG, {
   WebhookTestConfigEntry
 } from '../config/default'
 import * as types from '@indent/types'
-import { sign } from '../index'
+import { getSignaturePayload, sign } from '../index'
 import fetch from 'node-fetch'
 import path from 'path'
 import arg from 'arg'
@@ -56,8 +56,7 @@ if (!url) {
   process.exit(1)
 }
 
-let testSecret = config.verifySecret || 'test_secret_0zbtXMScgECutqG'
-let apiSecret = config.apiSecret || 'api_secret_0zbtXMScgECutqG'
+let hook = config.hook
 let timestamp = () => new Date().toISOString()
 let sleep = (d: number) => new Promise(resolve => setTimeout(resolve, d))
 
@@ -69,17 +68,21 @@ let complete = Promise.all(
 
     await sleep(cfg.delay || 0)
 
+    let ts = timestamp()
     let signature = await sign({
-      secret: testSecret,
-      payload: body
+      secret: hook.secret,
+      payload: getSignaturePayload({
+        timestamp: ts,
+        body
+      })
     })
 
     try {
-      await fetch(url, {
-        method: 'post',
+      await fetch(hook.url, {
+        method: hook.method || 'post',
         headers: {
-          Authorization: `Bearer ${apiSecret}`,
-          'X-Indent-Timestamp': timestamp(),
+          ...hook.headers,
+          'X-Indent-Timestamp': ts,
           'X-Indent-Signature': signature
         },
         body

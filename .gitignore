@@ -21,6 +21,8 @@ examples/**/*.tfstate.*
 examples/**/.serverless
 examples/**/node_modules
 examples/**/*.private.json
+examples/**/token.json
+examples/**/credentials.json
 examples/**/package-lock.json
 examples/**/local.settings.json
 examples/**/terraform/config/*.tfvars

@@ -17,8 +17,8 @@
     "url": "https://github.com/indentapis/indent-js.git"
   },
   "dependencies": {
-    "@indent/types": "^0.1.5",
-    "@indent/webhook": "^0.1.5",
+    "@indent/types": "latest",
+    "@indent/webhook": "latest",
     "@types/node-fetch": "^2.5.5",
     "axios": "^0.19.2",
     "gaxios": "^4.0.1",

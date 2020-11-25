@@ -15,6 +15,12 @@ curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --
 cd serverless-aws-ses-webhook
 ```
 
+Or use `create-example-app` if you have Node.js and `npx` installed:
+
+```bash
+npx create-example-app -e indentapis/indent-js/tree/master/examples/serverless-aws-ses-webhook
+```
+
 Install it and run:
 
 **NPM**

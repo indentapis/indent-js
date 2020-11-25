@@ -49,9 +49,9 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 
           switch (event) {
             case 'access/grant':
-              return grantPermission(auditEvent)
+              return grantPermission(auditEvent, events)
             case 'access/revoke':
-              return revokePermission(auditEvent)
+              return revokePermission(auditEvent, events)
             default:
               return Promise.resolve({
                 statusCode: 200,
@@ -76,9 +76,12 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 }
 
 async function grantPermission(
-  auditEvent: types.Event
+  auditEvent: types.Event,
+  allEvents: types.Event[]
 ): Promise<APIGatewayProxyResult> {
-  let result = await ses.sendEmail(getSendEmailParams(auditEvent)).promise()
+  let result = await ses
+    .sendEmail(getSendEmailParams(auditEvent, allEvents))
+    .promise()
 
   console.log({ resultFromSES: result })
   return {
@@ -88,9 +91,12 @@ async function grantPermission(
 }
 
 async function revokePermission(
-  auditEvent: types.Event
+  auditEvent: types.Event,
+  allEvents: types.Event[]
 ): Promise<APIGatewayProxyResult> {
-  let result = await ses.sendEmail(getSendEmailParams(auditEvent)).promise()
+  let result = await ses
+    .sendEmail(getSendEmailParams(auditEvent, allEvents))
+    .promise()
 
   console.log({ resultFromSES: result })
   return {
@@ -99,7 +105,10 @@ async function revokePermission(
   }
 }
 
-function getSendEmailParams(auditEvent: types.Event): AWS.SES.SendEmailRequest {
+function getSendEmailParams(
+  auditEvent: types.Event,
+  allEvents: types.Event[]
+): AWS.SES.SendEmailRequest {
   let targetActor = getTargetActor(auditEvent)
   let targetResource = getTargetResource(auditEvent)
   let targetActorLabel = getDisplayName(targetActor)
@@ -107,7 +116,9 @@ function getSendEmailParams(auditEvent: types.Event): AWS.SES.SendEmailRequest {
   let actionLabel = auditEvent.event === 'access/grant' ? 'Granted' : 'Revoked'
 
   let EmailText = `Please use an HTML-capable email viewer.`
-  let EmailHtml = getEmailHtml(auditEvent)
+  let EmailHtml = getEmailHtml(auditEvent, allEvents, {
+    simple: true
+  })
   let EmailSubject = `IAM · ${targetActorLabel} / ${targetResource.kind} ${targetResourceLabel} · Access ${actionLabel}`
 
   return {
@@ -139,14 +150,63 @@ function getTargetResource(auditEvent: types.Event): types.Resource {
   return auditEvent?.resources?.filter(r => !r.kind?.includes('user'))[0] || {}
 }
 
-function getEmailHtml(auditEvent: types.Event) {
+type EmailHtmlOptions = {
+  simple: boolean
+}
+
+function getEmailHtml(
+  auditEvent: types.Event,
+  allEvents: types.Event[],
+  opts: EmailHtmlOptions
+) {
   let targetActor = getTargetActor(auditEvent)
   let targetResource = getTargetResource(auditEvent)
   let timestampLabel = new Date(auditEvent.timestamp).toString()
 
   let metaLabels = auditEvent?.meta?.labels || {}
   let actionLabel = auditEvent.event === 'access/grant' ? 'granted' : 'revoked'
-  let indentURL = `https://indent.com/spaces/${INDENT_SPACE_NAME}/audit/workflows/${metaLabels['indent.com/workflow/origin/id']}/runs/${metaLabels['indent.com/workflow/origin/run/id']}`
+  let indentURL = `https://indent.com/spaces/${INDENT_SPACE_NAME}/workflows/${metaLabels['indent.com/workflow/origin/id']}/runs/${metaLabels['indent.com/workflow/origin/run/id']}`
+
+  if (opts.simple) {
+    return `
+<img style="margin:0;border:0;padding:0;display:block;outline:none;"
+src="https://indent.com/static/indent_text_black.png" width="120" height="34" />
+
+${allEvents
+  .filter(e => e.event != auditEvent.event)
+  .map(
+    e => `
+<p>
+  <b>${e?.actor?.displayName}</b> (<a href="mailto:${
+      e?.actor?.email
+    }" target="_blank">${
+      e?.actor?.email
+    }</a>) approved access to <b>${getDisplayName(
+      targetActor
+    )}</b> (<a href="mailto:${targetActor?.email}" target="_blank">${
+      targetActor?.email
+    }</a>) for <b>${targetResource?.kind} ${getDisplayName(targetResource)}</b>.
+</p>`
+  )
+  .join('\n')}
+
+<p>
+  <b>${auditEvent?.actor?.displayName}</b> (<a href="mailto:${
+      auditEvent?.actor?.email
+    }" target="_blank">${
+      auditEvent?.actor?.email
+    }</a>) ${actionLabel} access to <b>${getDisplayName(
+      targetActor
+    )}</b> (<a href="mailto:${targetActor?.email}" target="_blank">${
+      targetActor?.email
+    }</a>) for <b>${targetResource?.kind} ${getDisplayName(targetResource)}</b>.
+</p>
+<p style="font-size:11px">
+<a href="${indentURL}" target="_blank">View Workflow in Indent &rarr;</a>
+</p>
+<p style="font-size:11px">${timestampLabel}</p>
+`
+  }
 
   return `
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f5f5f5" style="font-family:Arial,Helvetica,sans-serif;font-weight:normal;font-size:14px;line-height:19px;color:#444444;border-collapse:collapse;border:1px solid #dddddd">

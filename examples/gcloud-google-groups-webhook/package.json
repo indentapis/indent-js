@@ -20,7 +20,7 @@
     "@indent/types": "latest",
     "@indent/webhook": "latest",
     "@types/node-fetch": "^2.5.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "gaxios": "^4.0.1",
     "googleapis": "^62.0.0",
     "googleapis-common": "^4.4.3"

@@ -9,13 +9,16 @@ variable "aws_profile" {
 }
 
 variable "indent_webhook_secret" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "okta_tenant" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "okta_token" {
-  type = string
+  type      = string
+  sensitive = true
 }

@@ -13,6 +13,11 @@ variable "indent_webhook_secret" {
   sensitive = true
 }
 
+variable "indent_space_name" {
+  type      = string
+  sensitive = true
+}
+
 variable "atspoke_api_key" {
   type      = string
   sensitive = true

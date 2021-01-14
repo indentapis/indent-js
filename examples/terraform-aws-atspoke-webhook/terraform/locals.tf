@@ -1,4 +1,3 @@
-
 locals {
   name          = "indent-atspoke-webhook-${random_string.suffix.result}"
   lambda_memory = 128

@@ -4,7 +4,9 @@
 
 ### Requirements
 
+- [Okta Account](https://okta.com)
 - [Terraform](https://terraform.io)
+- [AWS CLI or ~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 
 ### Download
 
@@ -15,44 +17,33 @@ curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --
 cd terraform-aws-okta-webhook
 ```
 
-Install it and run:
-
-**NPM**
+Install the dependencies...
 
 ```bash
-npm install
-npm run dev
+npm run deploy:init # initializes terraform aws provider with ~/.aws/config
+npm run deploy:prepare # builds AWS Lambda layers
 ```
 
-**Yarn**
+Add the environment variables...
 
 ```bash
-yarn
-yarn dev
+mv terraform/config/example.tfvars terraform/config/terraform.tfvars
 ```
 
-Then initialize Terraform and prepare the AWS Lambda Layer:
+`terraform/config/terraform.tfvars`
 
-```shell
-# Initialize Terraform
-npm run deploy:init
-
-# Build the layer for the node modules
-npm run deploy:prepare
+```hcl
+# Indent Webhook Secret is used to verify messages from Indent
+indent_webhook_secret = "wks0example-secret"
+# Okta Tenant is used to route requests to your Okta environment
+okta_tenant = "example.okta.com"
+# Okta Token is used to authorize requests to your Okta environment
+okta_token = "eXaMpLeOkTaToKeN"
 ```
-
-Add your terraform variables and deploy:
-
-```shell
-# Create `terraform/config/terraform.tfvars` from `terraform/config/example.tfvars`
-
-# Deploy the resources
-npm run deploy:all
-```
-
-Deploy it to the cloud with [Terraform](https://terraform.io) ([Documentation](https://terraform.io/docs/)) and [AWS Lambda](https://aws.amazon.com/lambda/).
 
 ### Deployment
+
+Deploy it to the cloud with [Terraform](https://terraform.io) ([Documentation](https://terraform.io/docs/)) and [AWS Lambda](https://aws.amazon.com/lambda/).
 
 This will take a few minutes to run the first time as Terraform sets up the resources in the AWS Account. You should see an output similar to below:
 

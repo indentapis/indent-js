@@ -35,13 +35,10 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
     await Promise.all(
       events.map(
         (auditEvent: types.Event): Promise<APIGatewayProxyResult> => {
-          let { actor, event, resources } = auditEvent
+          let { event } = auditEvent
 
-          console.log(
-            `@indent/webhook: ${event} { actor: ${
-              actor.id
-            }, resources: ${JSON.stringify(resources.map(r => r.id))} }`
-          )
+          console.log(`@indent/webhook: ${event}`)
+          console.log(JSON.stringify(auditEvent))
 
           switch (event) {
             case 'access/grant':
@@ -74,7 +71,6 @@ export const handle: APIGatewayProxyHandler = async function handle(event) {
 type AtspokeRequest = {
   subject: string
   requester: string
-
   body?: string
   team?: string
   owner?: string
@@ -158,17 +154,39 @@ async function prepareRequest(
   let atspokeUser = await getAtspokeWhoami()
 
   if (!atspokeUser) {
-    throw new Error('getAtspokeWhoami: empty')
+    throw new Error('getAtspokeWhoami: not found')
   }
 
   let { user: requester } = atspokeUser
-
-  console.log({ atspokeUser })
 
   return {
     requester,
     subject,
     body
+
+    /** 
+    requestType: '<request-type-for-access-changes>',
+    requestTypeInfo: {
+      answeredFields: [
+        // {
+        //   // reason
+        //   fieldId: '<field-for-reason>',
+        //   value: auditEvent.reason
+        // },
+        // duration
+        auditEvent.event === 'access/grant' && {
+          fieldId: '<field-for-duration>',
+          value: dur(auditEvent)
+        },
+        // approver_1_email
+        auditEvent.event === 'access/grant' && {
+          fieldId: '<field-for-approver>',
+          value: allEvents.filter(e => e.event === 'access/approve')?.[0]?.actor
+            ?.email
+        }
+      ].filter(Boolean)
+    }
+    */
   } as AtspokeRequest
 }
 
@@ -191,48 +209,48 @@ function getTargetResource(auditEvent: types.Event): types.Resource {
 function getBody(auditEvent: types.Event, allEvents: types.Event[]) {
   let targetActor = getTargetActor(auditEvent)
   let targetResource = getTargetResource(auditEvent)
-  let timestampLabel = new Date(auditEvent.timestamp).toString()
 
   let metaLabels = auditEvent?.meta?.labels || {}
   let actionLabel = auditEvent.event === 'access/grant' ? 'granted' : 'revoked'
   let indentURL = `https://indent.com/spaces/${INDENT_SPACE_NAME}/workflows/${metaLabels['indent.com/workflow/origin/id']}/runs/${metaLabels['indent.com/workflow/origin/run/id']}`
 
   return `
-<img style="margin:0;border:0;padding:0;display:block;outline:none;"
-src="https://indent.com/static/indent_text_black.png" width="120" height="34" />
-
 ${allEvents
   .filter(e => e.event != auditEvent.event)
   .map(
-    e => `
-<p>
-  <b>${e?.actor?.displayName}</b> (<a href="mailto:${
-      e?.actor?.email
-    }" target="_blank">${
-      e?.actor?.email
-    }</a>) approved access to <b>${getDisplayName(
-      targetActor
-    )}</b> (<a href="mailto:${targetActor?.email}" target="_blank">${
-      targetActor?.email
-    }</a>) for <b>${targetResource?.kind} ${getDisplayName(targetResource)}</b>.
-</p>`
+    e =>
+      `${e?.actor?.displayName}(${
+        e?.actor?.email
+      }) approved access to ${getDisplayName(targetActor)} (${
+        targetActor?.email
+      }) for ${targetResource?.kind} ${getDisplayName(
+        targetResource
+      )}${durationText(e)}.`
   )
   .join('\n')}
 
-<p>
-  <b>${auditEvent?.actor?.displayName}</b> (<a href="mailto:${
+${auditEvent?.actor?.displayName} (${
     auditEvent?.actor?.email
-  }" target="_blank">${
-    auditEvent?.actor?.email
-  }</a>) ${actionLabel} access to <b>${getDisplayName(
-    targetActor
-  )}</b> (<a href="mailto:${targetActor?.email}" target="_blank">${
+  }) ${actionLabel} access to ${getDisplayName(targetActor)} (${
     targetActor?.email
-  }</a>) for <b>${targetResource?.kind} ${getDisplayName(targetResource)}</b>.
-</p>
-<p style="font-size:11px">
-<a href="${indentURL}" target="_blank">View Workflow in Indent &rarr;</a>
-</p>
-<p style="font-size:11px">${timestampLabel}</p>
-`
+  }) for ${targetResource?.kind} ${getDisplayName(targetResource)}.
+
+View Workflow in Indent →
+${indentURL}`
+}
+
+function durationText(event: types.Event) {
+  return `${
+    !event.meta?.labels?.['indent.com/time/duration'] ||
+    event.meta?.labels?.['indent.com/time/duration'] === '-1ns'
+      ? ' '
+      : ' for '
+  }${dur(event)}`
+}
+
+function dur(event: types.Event) {
+  return !event.meta?.labels?.['indent.com/time/duration'] ||
+    event.meta?.labels?.['indent.com/time/duration'] === '-1ns'
+    ? 'until revoked'
+    : event.meta?.labels?.['indent.com/time/duration']
 }

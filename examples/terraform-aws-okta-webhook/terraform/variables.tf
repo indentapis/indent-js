@@ -1,21 +1,21 @@
 variable "aws_region" {
-  type    = "string"
+  type    = string
   default = "us-west-2"
 }
 
 variable "aws_profile" {
-  type    = "string"
+  type    = string
   default = "default"
 }
 
 variable "indent_webhook_secret" {
-  type = "string"
+  type = string
 }
 
 variable "okta_tenant" {
-  type = "string"
+  type = string
 }
 
 variable "okta_token" {
-  type = "string"
+  type = string
 }

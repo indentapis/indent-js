@@ -13,6 +13,8 @@ data "aws_iam_policy_document" "lambda_assume_role_document" {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "lambda_document" {
   version = "2012-10-17"
 
@@ -26,27 +28,25 @@ data "aws_iam_policy_document" "lambda_document" {
       "cloudwatch:PutMetricData",
     ]
 
-    resources = ["*"]
+    resources = ["arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${local.name}:*"]
   }
 }
 
 resource "aws_iam_policy" "lambda_policy" {
-  policy = "${data.aws_iam_policy_document.lambda_document.json}"
+  policy = data.aws_iam_policy_document.lambda_document.json
 }
 
 resource "aws_iam_role" "lambda_role" {
   name               = "${local.name}-role"
-  assume_role_policy = "${data.aws_iam_policy_document.lambda_assume_role_document.json}"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_document.json
 
-  tags = "${local.tags}"
+  tags = local.tags
 }
 
 resource "aws_iam_policy_attachment" "lambda_attachment" {
   name = "${local.name}-attachment"
 
-  roles = [
-    "${aws_iam_role.lambda_role.name}",
-  ]
+  roles = [aws_iam_role.lambda_role.name]
 
-  policy_arn = "${aws_iam_policy.lambda_policy.arn}"
+  policy_arn = aws_iam_policy.lambda_policy.arn
 }

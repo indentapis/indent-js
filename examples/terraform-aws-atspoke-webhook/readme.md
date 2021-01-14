@@ -4,7 +4,9 @@
 
 ### Requirements
 
+- [atSpoke Account](https://atspoke.com)
 - [Terraform](https://terraform.io)
+- [AWS CLI or ~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 
 ### Download
 
@@ -15,50 +17,47 @@ curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --
 cd terraform-aws-atspoke-webhook
 ```
 
-Install it and run:
-
-**NPM**
+Install the dependencies...
 
 ```bash
-npm install
-npm run dev
+npm run deploy:init # initializes terraform aws provider with ~/.aws/config
+npm run deploy:prepare # builds AWS Lambda layers
 ```
 
-**Yarn**
+Add the environment variables...
 
 ```bash
-yarn
-yarn dev
+mv terraform/config/example.tfvars terraform/config/terraform.tfvars
 ```
 
-Then initialize Terraform and prepare the AWS Lambda Layer:
+`terraform/config/terraform.tfvars`
 
-```shell
-# Initialize Terraform
-npm run deploy:init
-
-# Build the layer for the node modules
-npm run deploy:prepare
+```hcl
+# Indent Webhook Secret is used to verify messages from Indent
+indent_webhook_secret = "wks0example-secret"
+# Indent Space Name is used to link to the right space on Indent
+indent_space_name = "my-space-123"
+# atSpoke API Key is used to authorize requests to your atSpoke environment
+atspoke_api_key = "AY_myapikey"
 ```
-
-Add your terraform variables and deploy:
-
-```shell
-# Create `terraform/config/terraform.tfvars` from `terraform/config/example.tfvars`
-
-# Deploy the resources
-npm run deploy:all
-```
-
-Deploy it to the cloud with [Terraform](https://terraform.io) ([Documentation](https://terraform.io/docs/)) and [AWS Lambda](https://aws.amazon.com/lambda/).
 
 ### Deployment
+
+Deploy it to the cloud with [Terraform](https://terraform.io) ([Documentation](https://terraform.io/docs/)) and [AWS Lambda](https://aws.amazon.com/lambda/).
 
 This will take a few minutes to run the first time as Terraform sets up the resources in the AWS Account. You should see an output similar to below:
 
 ```bash
-$ npm run deploy:all
+npm run deploy:all
 
+# or if you want to manually review
+npm run tf:plan
+npm run tf:apply
+```
+
+**Expected Output**
+
+```
 > @indent/terraform-aws-atspoke-webhook@0.0.0 deploy:all  /Users/docs/dl/indent-js/examples/terraform-aws-atspoke-webhook
 > npm install; npm run build; npm run tf:apply -auto-approve
 

@@ -26,6 +26,7 @@ resource "aws_lambda_function" "lambda" {
   environment {
     variables = {
       "INDENT_WEBHOOK_SECRET" = var.indent_webhook_secret
+      "INDENT_SPACE_NAME"     = var.indent_space_name
       "ATSPOKE_API_KEY"       = var.atspoke_api_key
     }
   }

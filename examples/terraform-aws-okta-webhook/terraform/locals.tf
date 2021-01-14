@@ -1,4 +1,3 @@
-  
 locals {
   name          = "indent-okta-webhook-${random_string.suffix.result}"
   lambda_memory = 128

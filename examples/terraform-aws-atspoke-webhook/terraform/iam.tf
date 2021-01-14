@@ -13,6 +13,8 @@ data "aws_iam_policy_document" "lambda_assume_role_document" {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "lambda_document" {
   version = "2012-10-17"
 
@@ -26,7 +28,7 @@ data "aws_iam_policy_document" "lambda_document" {
       "cloudwatch:PutMetricData",
     ]
 
-    resources = ["*"]
+    resources = ["arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${local.name}:*"]
   }
 }
 

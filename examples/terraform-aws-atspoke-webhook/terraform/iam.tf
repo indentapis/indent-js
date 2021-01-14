@@ -46,7 +46,9 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_iam_policy_attachment" "lambda_attachment" {
   name = "${local.name}-attachment"
 
-  roles = [aws_iam_role.lambda_role.name]
+  roles = [
+    aws_iam_role.lambda_role.name,
+  ]
 
   policy_arn = aws_iam_policy.lambda_policy.arn
 }

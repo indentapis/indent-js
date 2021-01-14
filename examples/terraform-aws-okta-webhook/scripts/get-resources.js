@@ -30,7 +30,7 @@ async function loadFromOkta({ path = '', transform = r => r }) {
       Authorization: `SSWS ${OKTA_TOKEN}`,
       'Content-Type': 'application/json'
     }
-  }).then(r => r.data, null, 2)
+  }).then(r => r.data)
 
   return results.map(transform)
 }

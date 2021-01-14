@@ -13,12 +13,12 @@ variable "indent_webhook_secret" {
   sensitive = true
 }
 
-variable "okta_tenant" {
+variable "indent_space_name" {
   type      = string
   sensitive = true
 }
 
-variable "okta_token" {
+variable "atspoke_api_key" {
   type      = string
   sensitive = true
 }

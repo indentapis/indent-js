@@ -12,21 +12,22 @@ resource "aws_lambda_layer_version" "deps" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  function_name = local.name
-  role          = aws_iam_role.lambda_role.arn
-  filename      = data.archive_file.function_archive.output_path
-  memory_size   = local.lambda_memory
-  handler       = "index.handle"
-  runtime       = "nodejs12.x"
-  timeout       = "30"
+  function_name    = local.name
+  role             = aws_iam_role.lambda_role.arn
+  filename         = data.archive_file.function_archive.output_path
+  source_code_hash = data.archive_file.function_archive.output_sha
+  memory_size      = local.lambda_memory
+  handler          = "index.handle"
+  runtime          = "nodejs12.x"
+  timeout          = "30"
 
   layers = [aws_lambda_layer_version.deps.arn]
 
   environment {
     variables = {
       "INDENT_WEBHOOK_SECRET" = var.indent_webhook_secret
-      "OKTA_TENANT"           = var.okta_tenant
-      "OKTA_TOKEN"            = var.okta_token
+      "INDENT_SPACE_NAME"     = var.indent_space_name
+      "ATSPOKE_API_KEY"       = var.atspoke_api_key
     }
   }
 }

@@ -4,6 +4,10 @@ provider "aws" {
   max_retries = 1
 }
 
-provider "random" {
-  version = "~> 2.2"
+terraform {
+  required_providers {
+    random = {
+      version = "~> 2.2"
+    }
+  }
 }

@@ -216,7 +216,11 @@ function getBody(auditEvent: types.Event, allEvents: types.Event[]) {
 
   return `
 ${allEvents
-  .filter(e => e.event != auditEvent.event)
+  .filter(e => e.event === 'access/request')
+  .map(e => `<b>Request Reason</b> ${e.reason}`)}
+
+${allEvents
+  .filter(e => e.event != auditEvent.event && e.event === 'access/approve')
   .map(
     e =>
       `${e?.actor?.displayName}(${

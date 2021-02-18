@@ -161,7 +161,10 @@ function getEmailHtml(
 ) {
   let targetActor = getTargetActor(auditEvent)
   let targetResource = getTargetResource(auditEvent)
-  let timestampLabel = new Date(auditEvent.timestamp).toString()
+  let timestampDate = new Date(auditEvent.timestamp)
+  let timestampLabel = timestampDate.toLocaleString('en-US', {
+    timeZone: 'America/Los_Angeles'
+  })
 
   let metaLabels = auditEvent?.meta?.labels || {}
   let actionLabel = auditEvent.event === 'access/grant' ? 'granted' : 'revoked'
@@ -173,7 +176,11 @@ function getEmailHtml(
 src="https://indent.com/static/indent_text_black.png" width="120" height="34" />
 
 ${allEvents
-  .filter(e => e.event != auditEvent.event)
+  .filter(e => e.event === 'access/request')
+  .map(e => `<b>Request Reason</b> ${e.reason}`)}
+
+${allEvents
+  .filter(e => e.event === 'access/approve')
   .map(
     e => `
 <p>

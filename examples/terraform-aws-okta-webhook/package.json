@@ -25,10 +25,8 @@
     "url": "https://github.com/indentapis/indent-js.git"
   },
   "devDependencies": {
-    "aws-sdk": "^2.706.0",
-    "@types/node": "^13.9.8",
     "@types/aws-lambda": "^8.10.39",
-    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^13.9.8",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1"

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "serverless offline",
+    "deploy": "serverless deploy",
+    "destroy": "serverless remove",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Indent Inc <open@indent.com>",

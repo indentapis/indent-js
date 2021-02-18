@@ -9,30 +9,43 @@ const OKTA_TOKEN = process.env.OKTA_TOKEN
 assert(OKTA_TENANT, 'required env var missing: `OKTA_TENANT`')
 assert(OKTA_TOKEN, 'required env var missing: `OKTA_TOKEN`')
 
-const header = 'kind,displayName,id,email,labels__description'
+const header = 'kind,displayName,id,email,labels__managerId,labels__description'
 
 function toCSV(resources) {
   return [header, ...resources.map(toLine)].join('\n')
 }
 
 function toLine(r) {
-  return [r.kind, r.displayName, r.id, r.email, r.labels.description]
+  return [
+    r.kind,
+    r.displayName,
+    r.id,
+    r.email,
+    r.labels.managerId,
+    r.labels.description
+  ]
     .map(v => v || '')
     .join(',')
 }
 
-async function loadFromOkta({ path = '', transform = r => r }) {
-  const results = await axios({
+async function loadFromOkta({ path = '', limit = 200, transform = r => r }) {
+  console.log(`Loading data from Okta: { path: ${path}, limit: ${limit} }`)
+  const response = await axios({
     method: 'get',
-    url: `https://${OKTA_TENANT}/api/v1${path}`,
+    url: /http/.test(path)
+      ? path
+      : `https://${OKTA_TENANT}/api/v1${path}?limit=${limit}`,
     headers: {
       Accept: 'application/json',
       Authorization: `SSWS ${OKTA_TOKEN}`,
       'Content-Type': 'application/json'
     }
-  }).then(r => r.data)
-
-  return results.map(transform)
+  })
+  const { headers, data: results } = response
+  const linkInfo = parseLinkHeader(headers.link)
+  return results
+    .concat(linkInfo.next ? await loadFromOkta({ path: linkInfo.next }) : [])
+    .map(transform)
 }
 
 async function load() {
@@ -54,7 +67,10 @@ async function load() {
       displayName: [r.profile.firstName, r.profile.lastName]
         .filter(Boolean)
         .join(' '),
-      labels: { description: r.profile.description }
+      labels: {
+        managerId: r.profile.managerId,
+        description: r.profile.description
+      }
     })
   })
 
@@ -64,11 +80,26 @@ async function load() {
   try {
     await fs.mkdir(datadir)
   } catch (err) {
-    console.warn(`WARN: data directory "${datadir}" already exists`)
+    if (/EEXIST/.test(err.message)) {
+      // ignore directory already exists error
+    } else {
+      throw err
+    }
   }
 
   await fs.writeFile(datadir + '/resources.csv', csv)
-  console.log(`completed writing to "${datadir}/resources.csv"`)
+  console.log(`Completed writing to: "${datadir}/resources.csv"`)
+}
+
+function parseLinkHeader(s) {
+  const output = {}
+  const regex = /<([^>]+)>; rel="([^"]+)"/g
+  let m
+  while ((m = regex.exec(s))) {
+    const [_, v, k] = m
+    output[k] = v
+  }
+  return output
 }
 
 load().catch(err => {

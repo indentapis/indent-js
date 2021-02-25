@@ -1,7 +1,8 @@
-const assert = require('assert')
-const axios = require('axios')
-const fs = require('fs').promises
 const path = require('path')
+const axios = require('axios')
+const assert = require('assert')
+const fs = require('fs').promises
+const { unparse } = require('papaparse')
 
 const OKTA_TENANT = process.env.OKTA_TENANT
 const OKTA_TOKEN = process.env.OKTA_TOKEN
@@ -9,23 +10,28 @@ const OKTA_TOKEN = process.env.OKTA_TOKEN
 assert(OKTA_TENANT, 'required env var missing: `OKTA_TENANT`')
 assert(OKTA_TOKEN, 'required env var missing: `OKTA_TOKEN`')
 
-const header = 'kind,displayName,id,email,labels__managerId,labels__description'
+const defaultColumns = 'kind,displayName,id,email'.split(',')
 
 function toCSV(resources) {
-  return [header, ...resources.map(toLine)].join('\n')
-}
-
-function toLine(r) {
-  return [
-    r.kind,
-    r.displayName,
-    r.id,
-    r.email,
-    r.labels.managerId,
-    r.labels.description
-  ]
-    .map(v => v || '')
-    .join(',')
+  let columns = [...defaultColumns]
+  let addColumn = c => (columns = [...columns.filter(col => col !== c), c])
+  let items = resources.map(r => ({
+    ...r,
+    labels: undefined,
+    ...(r.labels
+      ? Object.keys(r.labels).reduce((acc, k) => {
+          let label = `labels__${k}`
+          addColumn(label)
+          return {
+            ...acc,
+            [label]: r.labels[k]
+          }
+        }, {})
+      : {})
+  }))
+  return unparse(items, {
+    columns
+  })
 }
 
 async function loadFromOkta({ path = '', limit = 200, transform = r => r }) {
@@ -43,6 +49,13 @@ async function loadFromOkta({ path = '', limit = 200, transform = r => r }) {
   })
   const { headers, data: results } = response
   const linkInfo = parseLinkHeader(headers.link)
+  const oktaRateLimitMax = headers['x-rate-limit-limit']
+  const oktaRateLimitRemaining = headers['x-rate-limit-remaining']
+  const oktaRateLimitReset = new Date(0)
+  oktaRateLimitReset.setUTCSeconds(parseInt(headers['x-rate-limit-reset'], 10))
+  console.log(
+    `  → ${oktaRateLimitRemaining} / ${oktaRateLimitMax} requests to Okta left until ${oktaRateLimitReset.toLocaleString()}`
+  )
   return results
     .concat(linkInfo.next ? await loadFromOkta({ path: linkInfo.next }) : [])
     .map(transform)
@@ -53,7 +66,7 @@ async function load() {
     path: '/groups',
     transform: r => ({
       id: r.id,
-      kind: 'okta.v1.group',
+      kind: 'okta.v1.Group',
       displayName: r.profile.name,
       labels: { description: r.profile.description }
     })
@@ -62,19 +75,48 @@ async function load() {
     path: '/users',
     transform: r => ({
       id: r.id,
-      kind: 'okta.v1.user',
+      kind: 'okta.v1.User',
       email: r.profile.email,
       displayName: [r.profile.firstName, r.profile.lastName]
         .filter(Boolean)
         .join(' '),
       labels: {
-        managerId: r.profile.managerId,
-        description: r.profile.description
+        managerId: r.profile.managerId
       }
     })
   })
 
-  const csv = toCSV([...groups, ...users])
+  const roles = (
+    await Promise.all(
+      users.map(
+        async user =>
+          await loadFromOkta({
+            path: `/users/${user.id}/roles`,
+            transform: r => {
+              let { id, _links, ...role } = r
+              return {
+                id: [user.id, id].join(':'),
+                kind: 'okta.v1.RoleBinding',
+                displayName: r.label,
+                email: user.email,
+                labels: {
+                  'indent.com/risk/level': 'critical',
+                  ...Object.keys(role).reduce(
+                    (acc, key) => ({
+                      ...acc,
+                      [key]: role[key]
+                    }),
+                    {}
+                  )
+                }
+              }
+            }
+          })
+      )
+    )
+  ).flat()
+
+  const csv = toCSV([...groups, ...roles, ...users])
   const datadir = path.resolve(__dirname, '../data')
 
   try {

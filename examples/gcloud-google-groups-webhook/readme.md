@@ -4,7 +4,11 @@
 
 ### Requirements
 
-- [gcloud](https://cloud.google.com/sdk/gcloud)
+- [gcloud CLI](https://cloud.google.com/sdk/gcloud)
+- [Google Cloud Project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+  - [Enable Functions](https://console.cloud.google.com/apis/api/cloudfunctions.googleapis.com)
+  - [Enable Cloud Build](https://console.cloud.google.com/marketplace/product/google/cloudbuild.googleapis.com)
+  - [Enable Cloud Identity](https://console.cloud.google.com/marketplace/product/google/cloudidentity.googleapis.com)
 
 ### Download
 
@@ -15,27 +19,27 @@ curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --
 cd gcloud-google-groups-webhook
 ```
 
-Install it and run:
+Install it and build:
 
 **NPM**
 
 ```bash
 npm install
-npm run dev
+npm run build
 ```
 
 **Yarn**
 
 ```bash
 yarn
-yarn dev
+yarn build
 ```
 
 Deploy it to the cloud with [Google Cloud Functions](https://cloud.google.com/functions) ([Documentation](https://cloud.google.com/functions/docs)).
 
 ## About Example
 
-This is a simple example showing how to use [Google Cloud Functions](https://cloud.google.com/functions) to deploy a function that can add or remove users from GitHub Teams programatically.
+This is a simple example showing how to use [Google Cloud Functions](https://cloud.google.com/functions) to deploy a function that can add or remove users from Google Groups programatically.
 
 ### Configuration
 
@@ -46,6 +50,12 @@ The Indent Webhook Secret should then be set as an environment variable. You can
 ```yaml
 INDENT_WEBHOOK_SECRET: wks012m1d127f10dj483elkfjw
 ```
+
+### Service Account-based Authentication
+
+You can create a Google Group or view an existing one in [Google Admin Groups](https://admin.google.com/ac/groups) and add the `serviceAccountEmail` used by your deployed function as a Manager to the group. Connect the group as a resource in the Indent dashboard and now your users can easily request access to the group.
+
+### Credential-based Authentication
 
 For Google Authentication, you will need `credentials.json` (represents your App) and `token.json` (represents an authorized user, like you or a service account) to set up this webhook.
 
@@ -75,6 +85,12 @@ URL: http://localhost:8080/
 ```
 
 ### Deployment
+
+Build the latest from source:
+
+```bash
+$ npm run build
+```
 
 To deploy this webhook on Google Cloud Functions, set up the environment variables and choose the project you'd like to deploy then run:
 

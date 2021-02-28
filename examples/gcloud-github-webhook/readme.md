@@ -15,20 +15,20 @@ curl https://codeload.github.com/indentapis/indent-js/tar.gz/master | tar -xz --
 cd gcloud-github-webhook
 ```
 
-Install it and run:
+Install it and build:
 
 **NPM**
 
 ```bash
 npm install
-npm run dev
+npm run build
 ```
 
 **Yarn**
 
 ```bash
 yarn
-yarn dev
+yarn build
 ```
 
 Deploy it to the cloud with [Google Cloud Functions](https://cloud.google.com/functions) ([Documentation](https://cloud.google.com/functions/docs)).
@@ -67,6 +67,12 @@ URL: http://localhost:8080/
 ```
 
 ### Deployment
+
+Build the latest from source:
+
+```bash
+$ npm run build
+```
 
 To deploy this webhook on Google Cloud Functions, set up the environment variables and choose the project you'd like to deploy then run:
 

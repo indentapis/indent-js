@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
+  "license": "Apache-2.0",
   "bin": {
     "indent-webhook-test": "./dist/bin/test.js"
   },

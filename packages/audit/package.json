@@ -5,6 +5,7 @@
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
   "browser": "browser/audit.js",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "yarn run build:es5 && yarn run build:esm",
     "build:bundle": "rollup --config",

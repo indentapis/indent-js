@@ -19,6 +19,7 @@ examples/**/*.tfstate
 examples/**/.terraform
 examples/**/*.tfstate.*
 examples/**/.serverless
+examples/**/data
 examples/**/node_modules
 examples/**/*.private.json
 examples/**/token.json

@@ -60,6 +60,13 @@ let hook = config.hook
 let timestamp = () => new Date().toISOString()
 let sleep = (d: number) => new Promise(resolve => setTimeout(resolve, d))
 
+if (!hook) {
+  console.error(
+    'Error: missing `hook` field in config, should be object like `{"hook":{"secret":"123"}}`'
+  )
+  process.exit(1)
+}
+
 let complete = Promise.all(
   config.entries.map(async (cfg: WebhookTestConfigEntry) => {
     let body = JSON.stringify({
@@ -78,7 +85,7 @@ let complete = Promise.all(
     })
 
     try {
-      await fetch(hook.url, {
+      await fetch(hook.url || url, {
         method: hook.method || 'post',
         headers: {
           ...hook.headers,

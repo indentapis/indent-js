@@ -23,14 +23,26 @@ export type Event = {
   sessionId?: string
   externalId?: string
   resources?: Resource[]
-  meta?: EventMeta
+  meta?: Meta
 }
 
-export type EventMeta = {
-  labels?: EventLabels
+export type Meta = {
+  // Machine-readable name
+  name?: string
+  // Human-readable name
+  displayName?: string
+  // Index-able labels
+  labels?: MetaLabels
+  // Timestamps
+  createTime?: string
+  updateTime?: string
+  deleteTime?: string
+  expireTime?: string
+  startTime?: string
+  endTime?: string
 }
 
-export type EventLabels = {
+export type MetaLabels = {
   [key: string]: string
 }
 

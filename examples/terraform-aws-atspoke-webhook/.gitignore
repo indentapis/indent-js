@@ -1,8 +1,0 @@
-data
-dist
-lib
-.env
-node_modules
-*.tfstate
-.terraform
-*.tfstate.*

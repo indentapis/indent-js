@@ -12,7 +12,6 @@ test: prepare
 	yarn test
 
 clean-versions:
-	rm -r .yarn/versions
 
 patch: clean-versions
 	yarn bump-patch

@@ -29,7 +29,7 @@
     "typescript-tslint-plugin": "^0.3.1"
   },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.0.0-rc.17"
+    "@yarnpkg/pnpify": "^3.0.1-rc.8"
   },
   "scripts": {
     "build": "yarn workspaces foreach -pt --verbose run build",

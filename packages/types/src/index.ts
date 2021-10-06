@@ -8,3 +8,4 @@ export {
   IWriteOptions,
   IAuditAPI
 } from './audit'
+export { ApplyUpdateResponse, PullUpdateResponse, Status } from './indentv1'

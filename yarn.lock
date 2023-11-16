@@ -293,6 +293,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@indent/approvals@workspace:packages/approvals":
+  version: 0.0.0-use.local
+  resolution: "@indent/approvals@workspace:packages/approvals"
+  dependencies:
+    "@indent/types": "workspace:packages/types"
+    "@types/isomorphic-fetch": ^0.0.35
+    "@types/jest": ^25.1.1
+    "@types/node": ^13.9.2
+    "@types/node-fetch": ^2.5.4
+    "@types/rollup-plugin-commonjs": 9.3.1
+    "@types/rollup-plugin-node-resolve": 4.1.0
+    isomorphic-fetch: ^2.2.1
+    jest: ^25.1.0
+    npm-run-all: ^4.1.2
+    prettier: ^1.17.0
+    prettier-check: ^2.0.0
+    react: latest
+    rimraf: ^2.6.3
+    rollup: ^2.1.0
+    rollup-plugin-commonjs: ^10.1.0
+    rollup-plugin-license: ^0.13.0
+    rollup-plugin-node-resolve: ^5.2.0
+    rollup-plugin-terser: ^5.3.0
+    rollup-plugin-typescript2: ^0.26.0
+    ts-jest: ^25.1.0
+    tslib: ^1.11.0
+    tslint: ^5.16.0
+    typescript: ^3.4.5
+  peerDependencies:
+    react: "*"
+  languageName: unknown
+  linkType: soft
+
 "@indent/audit@workspace:packages/audit":
   version: 0.0.0-use.local
   resolution: "@indent/audit@workspace:packages/audit"
@@ -320,6 +353,39 @@ __metadata:
     tslib: ^1.11.0
     tslint: ^5.16.0
     typescript: ^3.4.5
+  languageName: unknown
+  linkType: soft
+
+"@indent/link@workspace:packages/link":
+  version: 0.0.0-use.local
+  resolution: "@indent/link@workspace:packages/link"
+  dependencies:
+    "@indent/types": "workspace:packages/types"
+    "@types/isomorphic-fetch": ^0.0.35
+    "@types/jest": ^25.1.1
+    "@types/node": ^13.9.2
+    "@types/node-fetch": ^2.5.4
+    "@types/rollup-plugin-commonjs": 9.3.1
+    "@types/rollup-plugin-node-resolve": 4.1.0
+    isomorphic-fetch: ^2.2.1
+    jest: ^25.1.0
+    npm-run-all: ^4.1.2
+    prettier: ^1.17.0
+    prettier-check: ^2.0.0
+    react: latest
+    rimraf: ^2.6.3
+    rollup: ^2.1.0
+    rollup-plugin-commonjs: ^10.1.0
+    rollup-plugin-license: ^0.13.0
+    rollup-plugin-node-resolve: ^5.2.0
+    rollup-plugin-terser: ^5.3.0
+    rollup-plugin-typescript2: ^0.26.0
+    ts-jest: ^25.1.0
+    tslib: ^1.11.0
+    tslint: ^5.16.0
+    typescript: ^3.4.5
+  peerDependencies:
+    react: "*"
   languageName: unknown
   linkType: soft
 
@@ -5033,7 +5099,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-tokens@npm:^4.0.0":
+"js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
   checksum: 8a95213a5a77deb6cbe94d86340e8d9ace2b93bc367790b260101d2f36a2eaf4e4e22d9fa9cf459b38af3a32fb4190e638024cf82ec95ef708680e405ea7cc78
@@ -5394,6 +5460,17 @@ __metadata:
   dependencies:
     "@sinonjs/commons": ^1.7.0
   checksum: 7eb468d4ef4746c024d23cb2b75f679f79449a9d5cbe11abadf2f3b147c1d7ffe28816438bedfb8a75c58357a625c2f9ba197b050c226d2b3f0c4a956cf556fb
+  languageName: node
+  linkType: hard
+
+"loose-envify@npm:^1.1.0":
+  version: 1.4.0
+  resolution: "loose-envify@npm:1.4.0"
+  dependencies:
+    js-tokens: ^3.0.0 || ^4.0.0
+  bin:
+    loose-envify: cli.js
+  checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
   languageName: node
   linkType: hard
 
@@ -6639,6 +6716,15 @@ __metadata:
   version: 16.12.0
   resolution: "react-is@npm:16.12.0"
   checksum: 344dea88c669e94043426bffa8375414efcece8a84f0afba115b9d4d528d74f79e181e9ec57f60f0efb7204e631fb1ac885da2b2c5c67f1348a4f1e8e1654653
+  languageName: node
+  linkType: hard
+
+"react@npm:latest":
+  version: 18.2.0
+  resolution: "react@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
 

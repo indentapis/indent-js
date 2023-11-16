@@ -8,4 +8,7 @@ export {
   IWriteOptions,
   IAuditAPI
 } from './audit'
-export { ApplyUpdateResponse, PullUpdateResponse, Status } from './indentv1'
+export { ApplyUpdateResponse, PullUpdateResponse, Status } from './update'
+export * from './resource'
+export * from'./petition'
+export * from'./block'

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "module": "ES2015",
+    "paths": {
+      "@sentry/types": ["../types/src"]
+    }
+  }
+}

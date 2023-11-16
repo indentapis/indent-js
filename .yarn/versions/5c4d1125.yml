@@ -1,5 +1,6 @@
 undecided:
   - "@indentapis/indent-js"
+  - "@indent/approvals"
   - "@indent/audit"
   - "@indent/link"
   - "@indent/types"

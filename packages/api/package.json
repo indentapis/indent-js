@@ -1,6 +1,6 @@
 {
   "name": "@indent/api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,8 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@indent/types": "workspace:packages/types"
+    "@indent/types": "workspace:packages/types",
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35",

@@ -31,5 +31,6 @@ publish: build
 		&& yarn workspace @indent/webhook npm publish \
 		&& yarn workspace @indent/approvals npm publish \
 		&& yarn workspace @indent/link npm publish
+		&& yarn workspace @indent/api npm publish
 
 @PHONY: test

@@ -1,6 +1,6 @@
 {
   "name": "@indent/approvals",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@indent/types": "workspace:packages/types",
-    "isomorphic-fetch": "^2.2.1",
     "tslib": "^1.11.0"
   },
   "devDependencies": {

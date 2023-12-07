@@ -524,7 +524,7 @@ export abstract class APIClient {
   }
 
   private getUserAgent(): string {
-    const version = '(alpha)'
+    const version = '(alpha-v0.1.x)'
     return `${this.constructor.name}/JS ${version}`;
   }
 }

@@ -418,6 +418,36 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@indent/old-api@workspace:packages/old-api":
+  version: 0.0.0-use.local
+  resolution: "@indent/old-api@workspace:packages/old-api"
+  dependencies:
+    "@indent/types": "workspace:packages/types"
+    "@types/isomorphic-fetch": ^0.0.35
+    "@types/jest": ^25.1.1
+    "@types/node": ^13.9.2
+    "@types/node-fetch": ^2.5.4
+    "@types/rollup-plugin-commonjs": 9.3.1
+    "@types/rollup-plugin-node-resolve": 4.1.0
+    jest: ^25.1.0
+    npm-run-all: ^4.1.2
+    prettier: ^1.17.0
+    prettier-check: ^2.0.0
+    react: latest
+    rimraf: ^2.6.3
+    rollup: ^2.1.0
+    rollup-plugin-commonjs: ^10.1.0
+    rollup-plugin-license: ^0.13.0
+    rollup-plugin-node-resolve: ^5.2.0
+    rollup-plugin-terser: ^5.3.0
+    rollup-plugin-typescript2: ^0.26.0
+    ts-jest: ^25.1.0
+    tslib: ^1.11.0
+    tslint: ^5.16.0
+    typescript: ^3.4.5
+  languageName: unknown
+  linkType: soft
+
 "@indent/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@indent/types@workspace:packages/types"

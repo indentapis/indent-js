@@ -2,6 +2,12 @@
 node_modules
 .vscode/pnpify
 
+api/**/esm
+api/**/out
+api/**/dist
+api/**/browser
+api/**/coverage
+
 packages/**/esm
 packages/**/out
 packages/**/dist

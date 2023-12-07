@@ -39,6 +39,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/link"
       },
       {
+        "name": "@indent/old-api",
+        "reference": "workspace:packages/old-api"
+      },
+      {
         "name": "@indent/types",
         "reference": "workspace:packages/types"
       },
@@ -54,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@indent/approvals", ["workspace:packages/approvals"]],
       ["@indent/audit", ["workspace:packages/audit"]],
       ["@indent/link", ["workspace:packages/link"]],
+      ["@indent/old-api", ["workspace:packages/old-api"]],
       ["@indent/types", ["workspace:packages/types"]],
       ["@indent/webhook", ["workspace:packages/webhook"]],
       ["@indentapis/indent-js", ["workspace:."]]
@@ -652,6 +657,38 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/rollup-plugin-commonjs", "npm:9.3.1"],
             ["@types/rollup-plugin-node-resolve", "npm:4.1.0"],
             ["isomorphic-fetch", "npm:2.2.1"],
+            ["jest", "npm:25.1.0"],
+            ["npm-run-all", "npm:4.1.5"],
+            ["prettier", "npm:1.19.1"],
+            ["prettier-check", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:2.0.0"],
+            ["react", "npm:18.2.0"],
+            ["rimraf", "npm:2.7.1"],
+            ["rollup", "npm:2.1.0"],
+            ["rollup-plugin-commonjs", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:10.1.0"],
+            ["rollup-plugin-license", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:0.13.0"],
+            ["rollup-plugin-node-resolve", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:5.2.0"],
+            ["rollup-plugin-terser", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:5.3.0"],
+            ["rollup-plugin-typescript2", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:0.26.0"],
+            ["ts-jest", "virtual:603016c55bbd159bacaf31c323b378a763dc6ec75931517e908a4f9a3796b64caf1d50debf30f56b064b7c925f7213f0a6764dffadeec3f6faaf8888ba42c988#npm:25.1.0"],
+            ["tslib", "npm:1.11.0"],
+            ["tslint", "virtual:f82821517369aabf7da8a8bf253207fc12e32c890648e44fec3db021809aeed0e37d19ba4c30828416dd5c0b2ef87588ab6a891f474484fe4638dd9d9dcb8621#npm:5.20.1"],
+            ["typescript", "patch:typescript@npm%3A3.7.5#~builtin<compat/typescript>::version=3.7.5&hash=32657b"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@indent/old-api", [
+        ["workspace:packages/old-api", {
+          "packageLocation": "./packages/old-api/",
+          "packageDependencies": [
+            ["@indent/old-api", "workspace:packages/old-api"],
+            ["@indent/types", "workspace:packages/types"],
+            ["@types/isomorphic-fetch", "npm:0.0.35"],
+            ["@types/jest", "npm:25.1.1"],
+            ["@types/node", "npm:13.9.2"],
+            ["@types/node-fetch", "npm:2.5.4"],
+            ["@types/rollup-plugin-commonjs", "npm:9.3.1"],
+            ["@types/rollup-plugin-node-resolve", "npm:4.1.0"],
             ["jest", "npm:25.1.0"],
             ["npm-run-all", "npm:4.1.5"],
             ["prettier", "npm:1.19.1"],

@@ -1,5 +1,5 @@
 {
-  "name": "@indent/api",
+  "name": "@indent/old-api",
   "version": "0.0.2",
   "main": "dist/index.js",
   "module": "esm/index.js",
